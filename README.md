@@ -1,6 +1,6 @@
 # Button::Generator
 
-TODO: Write a gem description
+Create buttons for use with the @Pay API from your own system
 
 ## Installation
 
@@ -18,7 +18,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Include the gem in your Gemfile:
+  
+  'gem button-generator'
 
 ## Contributing
 
@@ -32,4 +34,3 @@ button-generator
 ================
 
 Button generator repo.
->>>>>>> d22505ab8df77f6781f77a5bbc31211def05c919
