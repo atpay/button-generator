@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Thomas Pastinsky"]
   spec.email         = ["tom@atpay.com"]
   spec.description   = %q{Atpay button generator}
-  spec.summary       = %q{Atpay button generator}
+  spec.summary       = %q{Atpay button generator summary}
   spec.homepage      = ""
   spec.license       = "MIT"
 

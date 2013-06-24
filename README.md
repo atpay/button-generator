@@ -1,6 +1,6 @@
 # Atpay::Button::Generator
 
-TODO: Write a gem description
+Atpay button generator library.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+gem install atpay-button-generator
 
 ## Contributing
 
