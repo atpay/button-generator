@@ -1,4 +1,4 @@
-require 'activemodel'
+require 'active_model'
 require 'email_validation'
 require 'amount_validation'
 
