@@ -1,13 +1,15 @@
 require 'active_model'
 require 'email_validation'
 require 'amount_validation'
+require 'button_template'
 
 # Accepts a list of email addresses and an amount,
 # creates buttons and returns json
-module ButtonGenerator
+class ButtonGenerator
   include ActiveModel::Validations
   include EmailValidation
   include AmountValidation
+  include ButtonTemplate
 
   attr_accessor :amount, 
     :email, 
@@ -54,7 +56,7 @@ module ButtonGenerator
   end
 
   def prospect_button
-    @prospect_button ||= Button.new.tap { |button|
+    @prospect_button ||= ButtonTemplate.new.tap { |button|
       button.destination = owner
       button.amount = amount
       button.wrapper = wrapper
@@ -64,7 +66,7 @@ module ButtonGenerator
   end
 
   def member_button(key_uuid)
-    Button.new.tap { |button|
+    ButtonTemplate.new.tap { |button|
       button.security_key_uuid = key_uuid
       button.destination = owner
       button.amount = amount
