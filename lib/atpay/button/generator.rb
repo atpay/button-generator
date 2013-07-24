@@ -1,7 +1,6 @@
 module AtPay
   module Button
     class Generator
-      include ActiveModel::Validations
       include EmailValidation
       include AmountValidation
 
