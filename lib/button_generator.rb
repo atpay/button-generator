@@ -1,7 +1,9 @@
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
 require 'active_model'
-require 'email_validation'
-require 'amount_validation'
-require 'button_template'
+require 'email_validation.rb'
+require 'amount_validation.rb'
+require 'button_template.rb'
 
 # Accepts a list of email addresses and an amount,
 # creates buttons and returns json
@@ -9,7 +11,6 @@ class ButtonGenerator
   include ActiveModel::Validations
   include EmailValidation
   include AmountValidation
-  include ButtonTemplate
 
   attr_accessor :amount, 
     :email, 
@@ -57,22 +58,37 @@ class ButtonGenerator
 
   def prospect_button
     @prospect_button ||= ButtonTemplate.new.tap { |button|
-      button.destination = owner
+      button.email = email
       button.amount = amount
       button.wrapper = wrapper
       button.image = image
       button.color = color
+      button.default_partner_uuid = owner
+      button.destination = ButtonTemplate.new
+      button.destination.email = email
+      button.destination.amount = amount
+      button.destination.wrapper = wrapper
+      button.destination.image = image
+      button.destination.color = color
+      button.destination.default_partner_uuid = owner
     }
   end
 
   def member_button(key_uuid)
     ButtonTemplate.new.tap { |button|
       button.security_key_uuid = key_uuid
-      button.destination = owner
       button.amount = amount
       button.wrapper = wrapper
       button.image = image
       button.color = color
+
+      button.destination = ButtonTemplate.new
+      button.destination.email = email
+      button.destination.amount = amount
+      button.destination.wrapper = wrapper
+      button.destination.image = image
+      button.destination.color = color
+      button.destination.default_partner_uuid = owner
     }
   end
 

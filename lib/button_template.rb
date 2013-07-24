@@ -1,6 +1,12 @@
 require 'active_support'
+require 'action_view'
+require 'pry'
+require 'liquid'
+require 'uri'
 
 class ButtonTemplate
+  include ActionView::Helpers::NumberHelper
+
   attr_accessor :destination,
     :amount,
     :email,
@@ -11,7 +17,8 @@ class ButtonTemplate
     :mailto_body,
     :wrapper,
     :color,
-    :image
+    :image,
+    :default_partner_uuid
   
   def to_html
     @html ||= template.render({
@@ -19,13 +26,13 @@ class ButtonTemplate
       "outlook_url" => (security_key_uuid ? mailto("outlook") : signup_url),
       "yahoo_url" => (security_key_uuid ? mailto("yahoo") : signup_url),
       "title" => "Pay",
-      "content" => ActionController::Base.helpers.number_to_currency(amount),
-      "dollar" =>  ActionController::Base.helpers.number_to_currency(amount).match(/\$\d+(?=\.)/).to_s,
-      "cents" =>   ActionController::Base.helpers.number_to_currency(amount).match(/(?<=\.)[^.]*/).to_s,
+      "content" => number_to_currency(amount),
+      "dollar" =>  number_to_currency(amount).match(/\$\d+(?=\.)/).to_s,
+      "cents" =>   number_to_currency(amount).match(/(?<=\.)[^.]*/).to_s,
       "color" => color || "#6dbe45",
       "image" => image || "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png",   
       "title" => button_title || "Pay",
-      "content" => button_content || ActionController::Base.helpers.number_to_currency(amount)
+      "content" => button_content || number_to_currency(amount)
     })
   end
 
@@ -67,8 +74,8 @@ class ButtonTemplate
   def mailto_body
     I18n.t("button.mailto.body", 
       :default => "Please press send to complete your transaction. Thank you for your payment of %{amount} to %{name}. Your receipt will be emailed to you shortly. Here is the ID code that will expedite your transaction %{key}",
-      :amount => ActionController::Base.helpers.number_to_currency(amount),
-      :name => destination.default_partner_name,
+      :amount => number_to_currency(amount),
+      :name => destination.default_partner_uuid,
       :key => security_key_uuid)
   end
 
@@ -80,13 +87,16 @@ class ButtonTemplate
 
   def template_content
     if ["yahoo.com","ymail.com","rocketmail.com"].any? { |check| destination.email.include?(check) } && wrapper == true
-      File.read(File.join(Rails.root, "app/views/api/buttons/template_yahoo_wrap.liquid")).squish
+      File.read(File.join(Dir.pwd, "../views/template_yahoo_wrap.liquid")).squish
     elsif ["yahoo.com","ymail.com","rocketmail.com"].any? { |check| destination.email.include?(check) } && wrapper != true 
-      File.read(File.join(Rails.root, "app/views/api/buttons/template_yahoo.liquid")).squish  
+      File.read(File.join(Dir.pwd, "../views/template_yahoo.liquid")).squish  
     elsif wrapper == true
-      File.read(File.join(Rails.root, "app/views/api/buttons/template_wrap.liquid")).squish
+      File.read(File.join(Dir.pwd, "../views/template_wrap.liquid")).squish
     else
-      File.read(File.join(Rails.root, "app/views/api/buttons/template.liquid")).squish
+      File.read(File.join(Dir.pwd, "../views/template.liquid")).squish
     end  
   end
+
+
+
 end
