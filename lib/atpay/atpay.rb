@@ -1,5 +1,6 @@
+require 'button/validation/amount_validation'
+require 'button/validation/email_validation'
+require 'button/template'
 require 'button/generator'
 
-module AtPay
-
-end
+module AtPay; end
