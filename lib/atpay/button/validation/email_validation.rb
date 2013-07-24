@@ -10,12 +10,12 @@ module AtPay
 
         def validate_email
           if email.blank? or email.empty?
-            errors[:email] << "not present"
+            raise MissingEmail.new "Email not present"
             return
           end
 
           email.each do |e|
-            errors[:email] << "'#{e}' not valid" unless e =~ /^.+@.+$/
+            raise InvalidEmal.new("'#{e}' not valid") unless e =~ /^.+@.+$/
           end
         end
       end

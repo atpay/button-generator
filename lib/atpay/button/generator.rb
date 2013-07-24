@@ -48,33 +48,15 @@ module AtPay
         @type = v ? v.to_sym : :payment
       end
 
-      def prospect_button
-        @prospect_button ||= ButtonTemplate.new.tap { |button|
-          button.email = email
-          button.amount = amount
-          button.wrapper = wrapper
-          button.image = image
-          button.color = color
-          button.default_partner_uuid = owner
-          button.destination = ButtonTemplate.new
-          button.destination.email = email
-          button.destination.amount = amount
-          button.destination.wrapper = wrapper
-          button.destination.image = image
-          button.destination.color = color
-          button.destination.default_partner_uuid = owner
-        }
-      end
-
       def member_button(key_uuid)
-        ButtonTemplate.new.tap { |button|
+        Template.new.tap { |button|
           button.security_key_uuid = key_uuid
           button.amount = amount
           button.wrapper = wrapper
           button.image = image
           button.color = color
 
-          button.destination = ButtonTemplate.new
+          button.destination = Template.new
           button.destination.email = email
           button.destination.amount = amount
           button.destination.wrapper = wrapper
@@ -90,16 +72,6 @@ module AtPay
             :email => email,
             :amount => amount,
             :button => member_button(key_uuid).to_html
-          }
-        end
-      end
-
-      def link_buttons
-        @prospects.collect do |email|
-          {
-            :email => email,
-            :amount => amount,
-            :button => prospect_button.to_html
           }
         end
       end

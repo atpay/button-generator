@@ -5,13 +5,9 @@ module AtPay
 
       class SplittingCents < ArgumentError; end
 
-      class MaxAmountExceeded < ArgumentError; end
+      class MissingEmail < ArgumentError; end
 
-      class MinAmountExceeded < ArgumentError; end
-
-      class EmailMissing < ArgumentError; end
-
-      class EmailInvalid < ArgumentError; end
+      class InvalidEmail < ArgumentError; end
     end
   end
 end
