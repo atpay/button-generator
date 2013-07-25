@@ -1,5 +1,8 @@
 module AtPay
   module Button
+    class LengthError < Exception
+    end
+
     class Collector
       SOURCES = [
         :cards,
@@ -21,7 +24,7 @@ module AtPay
       def user_data=(v)
         return if v.nil?
 
-        raise Validation::LengthError.new "user_data can't be longer than 2,500 characters, you provided #{v.length} characters" if v.length > 2500
+        raise LengthError.new "user_data can't be longer than 2,500 characters, you provided #{v.length} characters" if v.length > 2500
 
         @user_data = v
       end
