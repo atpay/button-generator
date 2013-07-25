@@ -16,13 +16,24 @@ describe AtPay::Button::Generator do
     })
 
     
+require 'ruby-prof'
+
+# Profile the code
+# result = RubyProf.profile do
+#   ...
+#     [code to profile]
+#       ...
+#       end
     require 'benchmark'
-    puts Benchmark.measure { 
-      50000.times do 
+
+    result = RubyProf.profile do
+      1000.times do 
         AtPay::Button::Generator.new(session, :email => "test@hotmail.com", :amount => 50).to_html 'token'
       end
-    }
+    end
 
+printer = RubyProf::CallStackPrinter.new(result)
+printer.print(STDOUT, {})
   end
 
   describe "#new" do

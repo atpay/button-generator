@@ -40,9 +40,7 @@ module AtPay
         @buttons
       end
 
-
       private
-
       def build(type, source)
         @button.build(type, source)
       end
