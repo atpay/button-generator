@@ -4,9 +4,7 @@ module AtPay
     end
 
     class Generator
-      def initialize(session, options)
-        @session = session
-
+      def initialize(options)
         @options = { 
           :title => "Pay",
           :type => :payment,
