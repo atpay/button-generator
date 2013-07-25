@@ -1,3 +1,5 @@
+require 'liquid'
+
 module AtPay
   module Button
     class Template
