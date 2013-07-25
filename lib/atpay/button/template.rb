@@ -1,9 +1,10 @@
 require 'liquid'
+require 'active_support/number_helper'
 
 module AtPay
   module Button
     class Template
-      #include ActionView::Helpers::NumberHelper
+      include ActiveSupport::NumberHelper
 
       # Requires destination and email in addition to this, which should just be strings...
       def initialize(options)
@@ -12,35 +13,29 @@ module AtPay
           :title => "Pay",
           :color => "#6dbe45",
           :image => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png",
-          :processor => "transaction@secure.atpay.com"
+          :processor => "transaction@secure.atpay.com",
+          :templates => Dir.pwd + "/templates"
         }.update(options)
       end
 
-      def render(args)
+      def render(args={})
         template.render({
-          :url          => mailto,
-          :outlook_url  => mailto("outlook"),
-          :yahoo_url    => mailto("yahoo"),
-          :content      => number_to_currency(amount),
-          :dollar       => number_to_currency(amount).match(/\$\d+(?=\.)/).to_s,
-          :cents        => number_to_currency(amount).match(/(?<=\.)[^.]*/).to_s,
+          :url          => default_mailto,
+          :outlook_url  => outlook_mailto,
+          :yahoo_url    => yahoo_mailto,
+          :content      => amount,
+          :dollar       => amount.match(/\$\d+(?=\.)/).to_s,
+          :cents        => amount.match(/(?<=\.)[^.]*/).to_s,
         }.update(@options.update(args)))
       end
 
       private
-      def mailto
-        case provider
-          when :outlook
-            outlook_mailto
-          when :yahoo
-            yahoo_mailto
-          when :default
-            default_mailto
-        end
+      def amount
+        number_to_currency(@options[:amount])
       end
 
       def provider
-        if ["yahoo.com", "ymail.com", "rocketmail.com"].any? { |c| c.include? @options[:email] }
+        if ["yahoo.com", "ymail.com", "rocketmail.com"].any? { |c| @options[:email].include? c }
           :yahoo
         elsif @options[:email] =~ /hotmail\.com$/
           :outlook
@@ -66,13 +61,13 @@ module AtPay
       end
 
       def mailto_body_template
-        Liquid::Template.parse(File.read(File.join(Dir.pwd, "templates/mailto_body.liquid")))
+        Liquid::Template.parse(File.read(File.join(@options[:templates], "mailto_body.liquid")))
       end
   
       def mailto_body
         URI::encode(mailto_body_template.render({
-          :amount => number_to_currency(amount),
-          :name => destination,
+          :amount => amount,
+          :name => @options[:destination],
           :token => @options[:token]
         }))
       end
@@ -83,20 +78,17 @@ module AtPay
         @template ||= Liquid::Template.parse(template_content)
       end
 
-=begin
-      Use provider and extend the checks there.
       def template_content
-        if ["yahoo.com","ymail.com","rocketmail.com"].any? { |check| destination.email.include?(check) } && wrapper == true
-          File.read(File.join(Dir.pwd, "templates/template_yahoo_wrap.liquid")).squish
-        elsif ["yahoo.com","ymail.com","rocketmail.com"].any? { |check| destination.email.include?(check) } && wrapper != true 
-          File.read(File.join(Dir.pwd, "templates/template_yahoo.liquid")).squish  
-        elsif wrapper == true
-          File.read(File.join(Dir.pwd, "templates/template_wrap.liquid")).squish
-        else
-          File.read(File.join(Dir.pwd, "templates/template.liquid")).squish
-        end  
+        binding.pry
+        case provider
+          when :outlook
+            File.read(File.join(@options[:templates], "outlook.liquid"))
+          when :yahoo
+            File.read(File.join(@options[:templates], "yahoo.liquid"))
+          when :default
+            File.read(File.join(@options[:templates], "default.liquid"))
+        end
       end
-=end
     end
   end
 end
