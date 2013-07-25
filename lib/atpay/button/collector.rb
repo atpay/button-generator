@@ -1,9 +1,6 @@
 module AtPay
   module Button
     class Collector
-      include Validation::Email
-      include Validation::Amount
-
       SOURCES = [
         :cards,
         :emails,
@@ -11,8 +8,9 @@ module AtPay
       ]
 
       def initialize(options)
+        @buttons = {}
         @options = options
-        user_data = options[:user_data]
+        self.user_data = options[:user_data]
         @env = options[:env]
 
         build_session options[:partner_id], options[:keys]
@@ -29,12 +27,14 @@ module AtPay
       end
 
       def generate
-        options[:targets].each do |type, sources|
+        @options[:targets].each do |type, sources|
           token_type = { cards: :card, emails: :email, members: :member }[type]
           @buttons[type] = sources.collect do |source|
             [source, build(token_type, source)]
           end
         end
+        
+        @buttons
       end
 
 
