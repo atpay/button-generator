@@ -2,12 +2,32 @@ require 'spec_helper'
 
 describe AtPay::Button::Generator do
   let(:session) { mock }
-  let(:options) { {partner_id: 1, public_key: 'bob', private_key: 'privatebob', environment: :sandbox, template: {}} }
+  let(:options) { {} }
   let(:subject) { AtPay::Button::Generator.new session, options }
+
+  it "benchmarks" do
+    require 'securerandom'
+
+    session = AtPay::Session.new({
+      :environment  => :sandbox,    # Either :sandbox or :production
+      :partner_id   => 1234,        # Integer value partner id
+      :public_key   => "EMELkhtOIj4u+HNDEzvh4gVhGc15cf2y",       # Provided public key
+      :private_key  => "EMELkhtOIj4u+HNDEzvh4gVhGc15cf2y"        # Provided private key
+    })
+
+    
+    require 'benchmark'
+    puts Benchmark.measure { 
+      50000.times do 
+        AtPay::Button::Generator.new(session, :email => "test@hotmail.com", :amount => 50).to_html 'token'
+      end
+    }
+
+  end
 
   describe "#new" do
     it "adds the provided options to the defaults" do
-      subject.instance_eval{ @options }.keys.sort.must_equal [:amount, :partner_id, :public_key, :private_key, :template, :environment, :title, :type, :group, :user_data].sort
+      subject.instance_eval{ @options }.keys.sort.must_equal [:amount, :template, :title, :type, :group, :user_data].sort
     end
   end
 

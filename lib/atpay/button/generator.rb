@@ -7,14 +7,15 @@ module AtPay
         :members
       ]
 
-      def initialize(session, options)
+      def initialize(session, options={})
         @session = session
 
         @options = { 
           :title => "Pay",
           :type => :payment,
           :group => nil,
-          :user_data => nil
+          :user_data => nil,
+          :template => {}
         }.update options
 
         @options[:amount] = amount
@@ -23,9 +24,7 @@ module AtPay
       end
 
       def amount
-        @amount ||= @options[:amount].gsub(/[^0-9\.]/, "").to_f
-      rescue
-        nil
+        @amount ||= @options[:amount].respond_to?(:gsub) ? @options[:amount].gsub(/[^0-9\.]/, "").to_f : @options[:amount]
       end
 
       def token(type, source)
