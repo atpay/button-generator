@@ -1,13 +1,10 @@
 module AtPay
   module Button
-    class Generator
-      SOURCES = [
-        :cards,
-        :emails,
-        :members
-      ]
+    class LengthError < Exception
+    end
 
-      def initialize(session, options={})
+    class Generator
+      def initialize(session, options)
         @session = session
 
         @options = { 
@@ -18,6 +15,7 @@ module AtPay
           :template => {}
         }.update options
 
+        validate_user_data
         @options[:amount] = amount
 
         template
@@ -27,20 +25,44 @@ module AtPay
         @amount ||= @options[:amount].respond_to?(:gsub) ? @options[:amount].gsub(/[^0-9\.]/, "").to_f : @options[:amount]
       end
 
+      def validate_user_data
+        return unless @options[:user_data]
+
+        raise LengthError.new "user_data can't be longer than 2,500 characters, you provided #{@options[:user_data].length} characters" if @options[:user_data].length > 2500
+      end
+
       def token(type, source)
-        @session.security_key(@options.merge({type => source})).email_token
+        session.security_key(@options.merge({type => source})).email_token
       end
 
       def template
-        @template ||= Template.new(@options[:template].update(:email => @options[:email], :amount => amount))
+        @template ||= Template.new(@options.update(:email => @options[:email], :amount => amount))
       end
 
-      def to_html(token)
-        @template.render(:token => token)
+      def to_html(token, email)
+        @template.render(:token => token, email: email)
       end
 
-      def build(type, source)
-        to_html token(type, source)
+      def generate(source, email, type = :card)
+        to_html token(type, source), email
+      end
+
+      def build(emails_to_cards)
+        emails_to_cards.collect do |email, card|
+          [email, generate(card, email)]
+        end
+      end
+
+
+      private
+
+      def session
+        @session ||= AtPay::Session.new({
+          public_key: @options[:public_key],
+          private_key: @options[:private_key],
+          partner_id: @options[:partner_id],
+          environment: @options[:env]
+        })
       end
     end
   end
