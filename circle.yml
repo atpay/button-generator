@@ -6,8 +6,8 @@ dependencies:
     - cp libsodium-0.4.1/src/libsodium/.libs/libsodium.so ./lib/
 
 test:
-  minitest_globs:
-    - spec/**/*.rb
+  override:
+    - bundle exec rake test
 
 machine:
   environment:
