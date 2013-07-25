@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe AtPay::Button::Generator do
   let(:session) { mock }
-  let(:options) { {partner_id: 1, public_key: 'bob', private_key: 'privatebob', environment: :sandbox, user_data: 'aaaaaaaa'} }
-  let(:subject) { AtPay::Button::Generator.new session, options }
+  let(:options) { {partner_id: 1, public_key: 'bob', private_key: 'privatebob', amount: '12', env: :sandbox, user_data: 'aaaaaaaa'} }
+  let(:subject) { AtPay::Button::Generator.new options }
 
   describe "#new" do
     it "adds the provided options to the defaults" do
-      subject.instance_eval{ @options }.keys.sort.must_equal [:amount, :email, :partner_id, :public_key, :private_key, :environment, :title, :type, :group, :user_data].sort
+      subject.instance_eval{ @options }.keys.sort.must_equal [:amount, :email, :partner_id, :public_key, :private_key, :env, :title, :type, :group, :user_data].sort
     end
   end
 
