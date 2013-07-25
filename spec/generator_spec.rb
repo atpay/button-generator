@@ -1,72 +1,61 @@
 require 'spec_helper'
 
 describe AtPay::Button::Generator do
-  let(:params) { { amount: '20', targets: {cards: ['383tdjgh37'], emails: ['bob@com.com']}, partner_id: 1, keys: {public: 'bob', private: 'privatebob'}, env: :sandbox } }
-  let(:subject) { AtPay::Button::Generator.new params }
+  let(:session) { mock }
+  let(:options) { {partner_id: 1, public_key: 'bob', private_key: 'privatebob', environment: :sandbox, template: {}} }
+  let(:subject) { AtPay::Button::Generator.new session, options }
 
   describe "#new" do
-    describe "type" do
-      it "defaults to payment" do
-        subject.type.must_equal :payment
-      end
-
-      it "accepts validation" do
-        gen = AtPay::Button::Generator.new params.merge({type: :validation})
-
-        gen.type.must_equal :validation
-      end
-    end
-
-    it "sets the user data"
-
-    it "runs the validations"
-  end
-
-  describe "#set_targets" do
-    it "assigns the given values to instance variables" do
-      subject.instance_eval { @cards }.must_equal ['383tdjgh37']
-      subject.instance_eval { @emails }.must_equal ['bob@com.com']
-      subject.instance_eval { @members }.must_be :nil?
+    it "adds the provided options to the defaults" do
+      subject.instance_eval{ @options }.keys.sort.must_equal [:partner_id, :public_key, :private_key, :template, :environment, :title, :type, :group, :user_data].sort
     end
   end
 
-  describe "#build_session" do
-    it "configures the session with the provided parameters" do
-      AtPay::Session.expects(:new).with public_key: 'bob', private_key: 'privatebob', partner_id: 1, environment: :sandbox
+  describe "#token" do
+    before do
+      @dummy_key = mock
+      session.expects(:security_key).returns(@dummy_key)
+    end
+
+    it "builds an @Pay token" do
+      @dummy_key.expects :email_token
+
+      subject.token(:card, '3838383')
+    end
+  end
+
+  describe "#template" do
+    it "loads the template if not already loaded" do
+      AtPay::Button::Template.expects(:new)
 
       subject
     end
+
+    it "does't load the template if it has already been loaded" do
+      subject.template
+      AtPay::Button::Template.expects(:new).never
+
+      subject.template
+    end
   end
 
-  describe "#generate_tokens" do
-    before do
-      @dummy_session = mock
+  describe "#to_html" do
+    it "renders the template with the given token" do
+      subject.template
+      AtPay::Button::Template.any_instance.expects(:render).with(token: 'token')
+
+      subject.to_html 'token'
+    end
+  end
+
+  describe "#build" do
+    it "initiates the process and returns the rendered template code" do
       @dummy_key = mock
-      @dummy_key.stubs(:email_token).returns 'token'
-      AtPay::Session.stubs(:new).returns(@dummy_session)
+      @dummy_key.expects(:email_token).returns('token')
+      AtPay::Button::Template.any_instance.expects(:render).returns('button')
+      session.expects(:security_key).returns(@dummy_key)
+
+      subject.build(:card, 'card').must_equal 'button'
     end
-
-    it "generates tokens for all target types if none specified" do
-      @dummy_session.expects(:security_key).with(any_parameters) { |options| options.has_key? :email }.returns(@dummy_key)
-      @dummy_session.expects(:security_key).with(any_parameters) { |options| options.has_key? :card }.returns(@dummy_key)
-
-      subject.send :generate_tokens
-
-      subject.instance_eval{ @tokens }.keys.must_include :cards
-      subject.instance_eval{ @tokens }.keys.must_include :emails
-      subject.instance_eval{ @tokens }.keys.wont_include :members
-    end
-
-    it "generates tokens for only the specified target type" do
-      @dummy_session.expects(:security_key).with(any_parameters) { |options| options.has_key? :card }.returns(@dummy_key)
-
-      subject.send(:generate_tokens, :cards)
-
-      subject.tokens.keys.must_equal [:cards]
-    end
-  end
-
-  describe "#generate" do
-    
   end
 end
