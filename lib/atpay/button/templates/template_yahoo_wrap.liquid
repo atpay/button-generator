@@ -1,10 +1,10 @@
 <!-- yahoo template with wrap -->
 
 <style>
-  a.not_yahoo {display:inline; display: inline !important;font-size: 24px !important;}
+  a.not_yahoo {display:inline; display: inline !important;font-size: 20px !important;}
   a.not_yahoosm {display:inline; display: inline !important;font-size: 12px !important;}
-
-  a.not_yahoo[fix] {display:inline; display: inline !important;font-size: 24px !important;}
+  
+  a.not_yahoo[fix] {display:inline; display: inline !important;font-size: 20px !important;}
   a.not_yahoosm[fix] {display:inline; display: inline !important;font-size: 12px !important;}
   a.yahoo[fix] {display:none; display: none !important;font-size: 0px !important;}
 </style>
@@ -24,16 +24,15 @@
           <tr>
             <td>
 
-
 <center>
-  <a border='0' class='not_yahoo' href='{{url}}' style='text-underline:none;' fix='email'>
+  <a border='0' class='yahoo' fix='email' href='{{yahoo_url}}' style='text-underline:none;'>
     <table border='0' cellpadding='0' cellspacing='0' style='background-color:{{color}};'>
-      <tr>
-        <td style='padding:3px 5px 5px 5px;' width='145'>
+      <tr class='main'>
+        <td class='main' style='padding:3px 5px 5px 5px;' width='145'>
           <table>
             <tr>
               <td>
-                <a class='not_yahoo' href='{{url}}' style='color:#ffffff; text-decoration:none; border:none; display:inline;' fix='email'>
+                <a class='yahoo' fix='email' href='{{yahoo_url}}' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
                   <img src='{{image}}' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
                 </a>
               </td>
@@ -48,13 +47,13 @@
                     <td>
                       <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
                         <tr>
-                          <td style='padding:0; margin:0; font-size: 24px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:25px;' valign='top'>
-                            <a class='not_yahoo' href='{{url}}' style='color:#ffffff; text-decoration:none; border:none; display:inline;' fix='email'>
+                          <td style='padding:0; margin:0; font-size: 20px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:25px;' valign='top'>
+                            <a class='yahoo' fix='email' href='{{yahoo_url}}' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
                               {{dollar}}
                             </a>
                           </td>
                           <td style='padding:0; margin:0; font-size:14px; text-decoration:underline;padding-left:2px; color: #ffffff; font-family: Tahoma; vertical-align:top;' valign='top'>
-                            <a class='not_yahoo' href='{{url}}' style='color:#ffffff; text-decoration:none; border:none; display:inline;' fix='email'>
+                            <a class='yahoosm' fix='email' href='{{yahoo_url}}' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
                               {{cents}}
                             </a>
                           </td>
@@ -70,14 +69,14 @@
       </tr>
     </table>
   </a>
-  <a border='0' class='yahoo' href='{{yahoo_url}}' style='text-underline:none; display:none; font-size:0px; text-indent:-9999999;' fix='email'>
-    <table border='0' cellpadding='0' cellspacing='0' style='background-color:{{color}};'>
+  <a border='0' class='not_yahoo' fix='email' href='{{url}}' style='text-underline:none; display:none; font-size:0px; text-indent:-9999999;'>
+    <table border='0' cellpadding='0' cellspacing='0' style='background-color:#6dbe45;'>
       <tr class='main'>
         <td class='main' style='padding:3px 5px 5px 5px;' width='145'>
           <table>
             <tr>
               <td>
-                <a class='yahoo' href='{{yahoo_url}}' style='color:#ffffff; text-decoration:none; border:none;' fix='email'>
+                <a class='not_yahoo' href='{{url}}' style='color:#ffffff; text-decoration:none; border:none;'>
                   <img src='{{image}}' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
                 </a>
               </td>
@@ -92,13 +91,13 @@
                     <td>
                       <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
                         <tr>
-                          <td style='padding:0; margin:0; font-size: 24px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:25px;' valign='top'>
-                            <a class='yahoo' href='{{yahoo_url}}' style='color:#ffffff; text-decoration:none; border:none;' fix='email'>
+                          <td style='padding:0; margin:0; font-size: 20px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:25px;' valign='top'>
+                            <a class='not_yahoo' fix='email' href='{{url}}' style='color:#ffffff; text-decoration:none; border:none;'>
                               {{dollar}}
                             </a>
                           </td>
                           <td style='padding:0; margin:0; font-size:14px; text-decoration:underline;padding-left:2px; color: #ffffff; font-family: Tahoma; vertical-align:top;' valign='top'>
-                            <a class='yahoo' href='{{yahoo_url}}' style='color:#ffffff; text-decoration:none; border:none;' fix='email'>
+                            <a class='not_yahoosm' fix='email' href='{{url}}' style='color:#ffffff; text-decoration:none; border:none;'>
                               {{cents}}
                             </a>
                           </td>
@@ -115,6 +114,10 @@
     </table>
   </a>
 </center>
+
+
+
+
 
 
 
