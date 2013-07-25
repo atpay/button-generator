@@ -8,6 +8,10 @@ describe AtPay::Button::Collector do
     it "doesn't allow more than 2500 characters" do
       assert_raises(AtPay::Button::LengthError) { AtPay::Button::Collector.new params.merge({user_data: ('a' * 2501)}) }
     end
+
+    it "allows less than 2500 characters" do 
+      AtPay::Button::Collector.new params.merge({ user_data: 'Hello world!' })
+    end
   end
 
   describe "#build_session" do
