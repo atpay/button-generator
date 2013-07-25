@@ -147,23 +147,30 @@ module AtPay
         })
       end
 
-      def generate_tokens(target = nil)
+      def generate_tokens(source = nil)
         @tokens = {}
 
-        SOURCES.each do |source|
-          @tokens[source] = tokens_for source
+        if source
+          ((source.respond_to?(:each) ? source : [source]) & SOURCES).each do |source|
+            @tokens[source] = tokens_for(source) if instance_variable_get('@' + source.to_s)
+          end
+        else
+          SOURCES.each do |source|
+            @tokens[source] = tokens_for(source) if instance_variable_get('@' + source.to_s)
+          end
         end
       end
 
       def tokens_for(source_type)
-        return unless targets = instance_variable_get("@" + source_type.to_s)
+        targets = instance_variable_get("@" + source_type.to_s)
 
+        # There is a horrible line below.  It really should be cleaned up ASAP
         targets.inject([]) do |collection, target|
           [
             target,
             @session.security_key({
               amount: amount,
-              source_type => target,
+              source_type.to_s.chop.to_sym => target,
               group: group
             }).email_token
           ]
@@ -171,7 +178,7 @@ module AtPay
       end
 
       def build_security_keys
-        return if members.blank?
+        return if members.nil? or members.empty?
 
         partner = owner.partner
 
