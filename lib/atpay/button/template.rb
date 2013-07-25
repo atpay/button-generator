@@ -38,8 +38,6 @@ module AtPay
       def provider
         if ["yahoo.com", "ymail.com", "rocketmail.com"].any? { |c| @options[:email].include? c }
           :yahoo
-        elsif @options[:email] =~ /hotmail\.com$/
-          :outlook
         else
           :default
         end 
@@ -85,8 +83,8 @@ module AtPay
         case provider
           when :yahoo
             File.read(File.join(@options[:templates], "#{wrap_prefix}yahoo.liquid"))
-          when :outlook
           when :default
+            binding.pry
             File.read(File.join(@options[:templates], "#{wrap_prefix}default.liquid"))
         end
       end
