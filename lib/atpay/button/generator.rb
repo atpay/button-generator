@@ -1,8 +1,8 @@
 module AtPay
   module Button
     class Generator
-      include EmailValidation
-      include AmountValidation
+      include Validation::Email
+      include Validation::Amount
 
       attr_accessor :amount, 
         :email, 

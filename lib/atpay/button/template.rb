@@ -1,7 +1,7 @@
 module AtPay
   module Button
     class Template
-      include ActionView::Helpers::NumberHelper
+      #include ActionView::Helpers::NumberHelper
 
       attr_accessor :destination,
         :amount,

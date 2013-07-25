@@ -1,11 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'atpay/button/generator/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "atpay-button-generator"
-  spec.version       = Atpay::Button::Generator::VERSION
+  spec.version       = '0.1'
   spec.authors       = ["Thomas Pastinsky"]
   spec.email         = ["tom@atpay.com"]
   spec.description   = %q{Atpay button generator}
