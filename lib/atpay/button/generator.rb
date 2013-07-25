@@ -4,6 +4,12 @@ module AtPay
       include Validation::Email
       include Validation::Amount
 
+      SOURCES = [
+        :cards,
+        :emails,
+        :members
+      ]
+
       attr_accessor :amount, 
         :email, 
         :owner, 
@@ -18,7 +24,7 @@ module AtPay
 
       def initialize(options)
         self.amount = options[:amount]
-        self.email = options[:email]
+        #self.email = options[:email]
         self.owner = options[:owner]
         self.wrapper = options[:wrapper]
         self.image = options[:image]
@@ -26,7 +32,10 @@ module AtPay
         self.type = options[:type]
         self.user_data = options[:user_data]
 
-        build_session options[:partner_id], options
+        @env = options[:env]
+
+        set_targets options[:targets]
+        build_session options[:partner_id], options[:keys]
 
         @member_map = {}
       end
@@ -101,7 +110,7 @@ module AtPay
       def payment_buttons
         build_security_keys
 
-        @buttons ||= mailto_buttons + link_buttons
+        @buttons ||= mailto_buttons
       end
 
       def mailto_tokens
@@ -115,17 +124,6 @@ module AtPay
         end
       end
 
-      def link_tokens
-        @prospects.collect do |email|
-          {
-            :email => email,
-            :amount => amount,
-            :token => nil,
-            :url => prospect_button.url
-          } 
-        end
-      end
-
       def tokens
         build_security_keys
 
@@ -133,6 +131,44 @@ module AtPay
       end
 
       private
+
+      def set_targets(targets)
+        (targets.keys & SOURCES).each do |type|
+          instance_variable_set('@' + type.to_s, targets[type])
+        end
+      end
+
+      def build_session(partner_id, keys)
+        @session = AtPay::Session.new({
+          public_key: keys[:public],
+          private_key: keys[:private],
+          partner_id: partner_id,
+          environment: @env
+        })
+      end
+
+      def generate_tokens(target = nil)
+        @tokens = {}
+
+        SOURCES.each do |source|
+          @tokens[source] = tokens_for source
+        end
+      end
+
+      def tokens_for(source_type)
+        return unless targets = instance_variable_get("@" + source_type.to_s)
+
+        targets.inject([]) do |collection, target|
+          [
+            target,
+            @session.security_key({
+              amount: amount,
+              source_type => target,
+              group: group
+            }).email_token
+          ]
+        end
+      end
 
       def build_security_keys
         return if members.blank?
