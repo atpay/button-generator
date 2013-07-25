@@ -54,7 +54,7 @@ module AtPay
 
       def mailto(email_type = "normal") 
         target = mail_target #TODO transaction_email_address config
-        subject = mailto_subject || I18n.t("button.mailto.subject", :default => "Submit @Pay Payment")
+        subject = mailto_subject || "Submit @Pay Payment"
         body = mailto_body  
         
         case email_type
@@ -68,11 +68,7 @@ module AtPay
       end
 
       def mailto_body
-        I18n.t("button.mailto.body", 
-          :default => "Please press send to complete your transaction. Thank you for your payment of %{amount} to %{name}. Your receipt will be emailed to you shortly. Here is the ID code that will expedite your transaction %{key}",
-          :amount => number_to_currency(amount),
-          :name => destination.default_partner_uuid,
-          :key => security_key_uuid)
+        "Please press send to complete your transaction. Thank you for your payment of #{number_to_currency(amount)} to #{destination.default_partner_uuid}. Your receipt will be emailed to you shortly. Here is the ID code that will expedite your transaction #{security_key_uuid}"
       end
 
       # This is processed as liquid - in the future we can allow overwriting the
