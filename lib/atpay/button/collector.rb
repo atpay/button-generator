@@ -1,8 +1,5 @@
 module AtPay
   module Button
-    class LengthError < Exception
-    end
-
     class Collector
       SOURCES = [
         :cards,
@@ -15,8 +12,6 @@ module AtPay
         @options = options
         self.user_data = options[:user_data]
         @env = options[:env]
-
-        build_session options[:partner_id], options[:keys]
 
         @button = Generator.new @session, options
       end
@@ -45,15 +40,6 @@ module AtPay
 
       def build(type, source)
         @button.build(type, source)
-      end
-
-      def build_session(partner_id, keys)
-        @session = AtPay::Session.new({
-          public_key: keys[:public],
-          private_key: keys[:private],
-          partner_id: partner_id,
-          environment: @env
-        })
       end
     end
   end

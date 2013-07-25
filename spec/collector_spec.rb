@@ -14,14 +14,6 @@ describe AtPay::Button::Collector do
     end
   end
 
-  describe "#build_session" do
-    it "configures the session with the provided parameters" do
-      AtPay::Session.expects(:new).with public_key: 'bob', private_key: 'privatebob', partner_id: 1, environment: :sandbox
-
-      subject
-    end
-  end
-
   describe "#generate" do
     it "returns an association of buttons and the source value used to build them" do
       AtPay::Button::Generator.any_instance.stubs(:build).returns('button')

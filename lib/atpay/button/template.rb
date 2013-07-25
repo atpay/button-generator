@@ -76,7 +76,7 @@ module AtPay
       # This is processed as liquid - in the future we can allow overwriting the
       # template here and creating custom buttons.
       def template
-        @template ||= Liquid::Template.parse(template_content)
+        Liquid::Template.parse(template_content)
       end
 
       def template_content
