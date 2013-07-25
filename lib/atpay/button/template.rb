@@ -84,7 +84,6 @@ module AtPay
           when :yahoo
             File.read(File.join(@options[:templates], "#{wrap_prefix}yahoo.liquid"))
           when :default
-            binding.pry
             File.read(File.join(@options[:templates], "#{wrap_prefix}default.liquid"))
         end
       end
