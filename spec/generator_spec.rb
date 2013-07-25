@@ -41,24 +41,28 @@ describe AtPay::Button::Generator do
   describe "#generate_tokens" do
     before do
       @dummy_session = mock
+      @dummy_key = mock
+      @dummy_key.stubs(:email_token).returns 'token'
       AtPay::Session.stubs(:new).returns(@dummy_session)
     end
 
     it "generates tokens for all target types if none specified" do
-      @dummy_session.expects(:security_key).with(any_parameters) { |options| options.has_key? :emails }
-      @dummy_session.expects(:security_key).with(any_parameters) { |options| options.has_key? :cards }
+      @dummy_session.expects(:security_key).with(any_parameters) { |options| options.has_key? :email }.returns(@dummy_key)
+      @dummy_session.expects(:security_key).with(any_parameters) { |options| options.has_key? :card }.returns(@dummy_key)
 
       subject.send :generate_tokens
 
-      subject.targets.keys.must_include :cards
-      subject.targets.keys.must_include :emails
-      subject.targets.keys.wont_include :members
+      subject.instance_eval{ @tokens }.keys.must_include :cards
+      subject.instance_eval{ @tokens }.keys.must_include :emails
+      subject.instance_eval{ @tokens }.keys.wont_include :members
     end
 
     it "generates tokens for only the specified target type" do
+      @dummy_session.expects(:security_key).with(any_parameters) { |options| options.has_key? :card }.returns(@dummy_key)
+
       subject.send(:generate_tokens, :cards)
 
-      subject.targets.keys.must_equal [:cards]
+      subject.tokens.keys.must_equal [:cards]
     end
   end
 
