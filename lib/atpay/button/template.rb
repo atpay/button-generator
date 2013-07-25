@@ -3,72 +3,76 @@ module AtPay
     class Template
       #include ActionView::Helpers::NumberHelper
 
-      attr_accessor :destination,
-        :amount,
-        :email,
-        :security_key_uuid,
-        :button_title,
-        :button_content,
-        :mailto_subject,
-        :mailto_body,
-        :wrapper,
-        :color,
-        :image,
-        :default_partner_uuid
-      
-      def to_html
-        @html ||= template.render({
-          "url" => (security_key_uuid ? mailto : signup_url),
-          "outlook_url" => (security_key_uuid ? mailto("outlook") : signup_url),
-          "yahoo_url" => (security_key_uuid ? mailto("yahoo") : signup_url),
-          "title" => "Pay",
-          "content" => number_to_currency(amount),
-          "dollar" =>  number_to_currency(amount).match(/\$\d+(?=\.)/).to_s,
-          "cents" =>   number_to_currency(amount).match(/(?<=\.)[^.]*/).to_s,
-          "color" => color || "#6dbe45",
-          "image" => image || "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png",   
-          "title" => button_title || "Pay",
-          "content" => button_content || number_to_currency(amount)
-        })
+      # Requires destination and email in addition to this, which should just be strings...
+      def initialize(options)
+        @options = {
+          :subject => "Submit @Pay Payment",
+          :title => "Pay",
+          :color => "#6dbe45",
+          :image => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png",
+          :processor => "transaction@secure.atpay.com"
+        }.update(options)
       end
 
-      def signup_url
-        "https://atpay.com/pay_pages/#{destination.default_partner_uuid}/registrations/new?transaction[amount]=#{amount}"
+      def render(args)
+        template.render({
+          :url          => mailto,
+          :outlook_url  => mailto("outlook"),
+          :yahoo_url    => mailto("yahoo"),
+          :content      => number_to_currency(amount),
+          :dollar       => number_to_currency(amount).match(/\$\d+(?=\.)/).to_s,
+          :cents        => number_to_currency(amount).match(/(?<=\.)[^.]*/).to_s,
+        }.update(@options.update(args)))
       end
 
-      def payment_url
-        "https://atpay.com/pay_pages/#{destination.default_partner_uuid}/transactions/new?transaction[amount]=#{amount}&security_key_uuid=#{security_key_uuid}"
-      end
-
-      def url
-        if security_key_uuid
-          payment_url
-        else
-          signup_url
+      private
+      def mailto
+        case provider
+          when :outlook
+            outlook_mailto
+          when :yahoo
+            yahoo_mailto
+          when :default
+            default_mailto
         end
       end
 
-      def mail_target
-        "transaction@secure.atpay.com"
-      end
-
-      def mailto(email_type = "normal") 
-        target = mail_target #TODO transaction_email_address config
-        subject = mailto_subject || "Submit @Pay Payment"
-        body = mailto_body  
-        
-        case email_type
-        when'yahoo'
-          "http://compose.mail.yahoo.com/?to=#{target}&subject=#{URI::encode(subject.to_str)}&body=#{URI::encode(body.to_str)}"    
-        when'outlook'
-          "https://www.hotmail.com/secure/start?action=compose&to=#{target}&subject=#{URI::encode(subject.to_str)}&body=#{URI::encode(body.to_str)}"
+      def provider
+        if ["yahoo.com", "ymail.com", "rocketmail.com"].any? { |c| c.include? @options[:email] }
+          :yahoo
+        elsif @options[:email] =~ /hotmail\.com$/
+          :outlook
         else
-          "mailto:#{target}?subject=#{URI::encode(subject.to_str)}&body=#{URI::encode(body.to_str)}"
-        end  
+          :default
+        end 
       end
 
+      def mailto_subject
+        URI::encode(@options[:subject])
+      end
+
+      def yahoo_mailto
+        "http://compose.mail.yahoo.com/?to=#{@options[:processor]}&subject=#{mailto_subject}&body=#{mailto_body}"    
+      end
+
+      def outlook_mailto
+        "https://www.hotmail.com/secure/start?action=compose&to=#{@options[:processor]}&subject=#{mailto_subject}&body=#{mailto_body}"
+      end
+
+      def default_mailto
+        "mailto:#{@options[:processor]}?subject=#{mailto_subject}&body=#{mailto_body}"
+      end
+
+      def mailto_body_template
+        Liquid::Template.parse(File.read(File.join(Dir.pwd, "templates/mailto_body.liquid")))
+      end
+  
       def mailto_body
-        "Please press send to complete your transaction. Thank you for your payment of #{number_to_currency(amount)} to #{destination.default_partner_uuid}. Your receipt will be emailed to you shortly. Here is the ID code that will expedite your transaction #{security_key_uuid}"
+        URI::encode(mailto_body_template.render({
+          :amount => number_to_currency(amount),
+          :name => destination,
+          :token => @options[:token]
+        }))
       end
 
       # This is processed as liquid - in the future we can allow overwriting the
@@ -77,6 +81,8 @@ module AtPay
         @template ||= Liquid::Template.parse(template_content)
       end
 
+=begin
+      Use provider and extend the checks there.
       def template_content
         if ["yahoo.com","ymail.com","rocketmail.com"].any? { |check| destination.email.include?(check) } && wrapper == true
           File.read(File.join(Dir.pwd, "templates/template_yahoo_wrap.liquid")).squish
@@ -88,6 +94,7 @@ module AtPay
           File.read(File.join(Dir.pwd, "templates/template.liquid")).squish
         end  
       end
+=end
     end
   end
 end
