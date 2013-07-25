@@ -16,9 +16,26 @@ Or install it yourself as:
 
     $ gem install atpay-button-generator
 
-## Usage
+## Requirements
+
+Ruby 3.2
+
+## Installation
 
 gem install atpay-button-generator
+
+## Usage
+
+
+## Parameters
+
+
+Title:
+
+Type
+
+
+
 
 ## Contributing
 
