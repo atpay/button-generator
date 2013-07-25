@@ -16,6 +16,8 @@ module AtPay
           :group => nil,
           :user_data => nil
         }.update options
+
+        template
       end
 
       def email
@@ -37,7 +39,7 @@ module AtPay
       end
 
       def to_html(token)
-        @template.render(:token => t)
+        @template.render(:token => token)
       end
 
       def build(type, source)
