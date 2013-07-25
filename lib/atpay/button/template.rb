@@ -14,7 +14,8 @@ module AtPay
           :color => "#6dbe45",
           :image => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png",
           :processor => "transaction@secure.atpay.com",
-          :templates => Dir.pwd + "/templates"
+          :templates => File.join(File.dirname(__FILE__), "/templates"),
+          :wrap => false
         }.update(options)
       end
 
@@ -79,14 +80,14 @@ module AtPay
       end
 
       def template_content
-        binding.pry
+        wrap_prefix = @options[:wrap] ? "wrap_" : ""
+
         case provider
-          when :outlook
-            File.read(File.join(@options[:templates], "outlook.liquid"))
           when :yahoo
-            File.read(File.join(@options[:templates], "yahoo.liquid"))
+            File.read(File.join(@options[:templates], "#{wrap_prefix}yahoo.liquid"))
+          when :outlook
           when :default
-            File.read(File.join(@options[:templates], "default.liquid"))
+            File.read(File.join(@options[:templates], "#{wrap_prefix}default.liquid"))
         end
       end
     end
