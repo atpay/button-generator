@@ -3,7 +3,7 @@ module AtPay
     module Validation
       module Amount
         def validate_amount
-          if amount.blank?
+          if amount.nil?
             raise MissingAmount.new "not present"
             return
           end

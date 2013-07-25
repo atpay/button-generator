@@ -3,7 +3,7 @@ module AtPay
     module Validation
       module Email
         def validate_email
-          if email.blank? or email.empty?
+          if email.nil? or email.empty?
             raise MissingEmail.new "Email not present"
             return
           end

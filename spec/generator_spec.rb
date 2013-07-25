@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe AtPay::Button::Generator do
+  let(:params) { { amount: '20', targets: {cards: ['383tdjgh37']}, destination: 1, keys: {public: '', private: ''}, env: :sandbox } }
+  let(:subject) { AtPay::Button::Generator.new params }
+
   describe "#new" do
     it "configures the token session"
 
@@ -26,7 +29,11 @@ describe AtPay::Button::Generator do
   end
 
   describe "#build_session" do
-    it "configures the session with the provided parameters"
+    it "configures the session with the provided parameters" do
+      AtPay::Session.expects(:new).with public_key: 'bob', private_key: 'privatebob', partner_id: 1, environment: :sandbox
+
+      subject
+    end
   end
 
   describe "#generate" do

@@ -26,21 +26,27 @@ module AtPay
         self.type = options[:type]
         self.user_data = options[:user_data]
 
+        build_session options[:partner_id], options
+
         @member_map = {}
       end
 
-      def amount=(v)
-        unless v.blank?
+      def amount=(v)        
+        unless v.nil? or v.empty?
           @amount = v.to_s.gsub(/[^0-9\.]/, "").to_f 
         else
           @amount = v
         end
+
+        validate_amount
       end
 
       def email=(v)
         @email = (v || "").split(/\n|\r|,/).collect(&:strip).select { |e| 
           !e.strip.blank?
         }
+
+        validate_email
       end
 
       # Default to payment buttons.
