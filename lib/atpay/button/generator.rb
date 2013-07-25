@@ -9,7 +9,8 @@ module AtPay
           :title => "Pay",
           :type => :payment,
           :group => nil,
-          :user_data => nil
+          :user_data => nil,
+          :template => {}
         }.update options
 
         validate_user_data
@@ -19,9 +20,7 @@ module AtPay
       end
 
       def amount
-        @amount ||= @options[:amount].gsub(/[^0-9\.]/, "").to_f
-      rescue
-        nil
+        @amount ||= @options[:amount].respond_to?(:gsub) ? @options[:amount].gsub(/[^0-9\.]/, "").to_f : @options[:amount]
       end
 
       def validate_user_data
