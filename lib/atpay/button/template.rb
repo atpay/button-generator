@@ -79,6 +79,7 @@ module AtPay
       end
 
       def template_content
+        binding.pry
         case provider
           when :outlook
             File.read(File.join(@options[:templates], "outlook.liquid"))

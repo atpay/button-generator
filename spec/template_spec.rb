@@ -20,7 +20,7 @@ describe AtPay::Button::Template do
 
     it "renders yahoo specific templates for yahoo providers" do
       %w(test@yahoo.com test@ymail.com test@rocketmail.com).each do |email|
-        subject.instance_eval { @options[:email] = "test@yahoo.com" }
+        subject.instance_eval { @options[:email] = email }
         subject.render.strip.must_equal "Yahoo"
       end
     end
@@ -28,6 +28,18 @@ describe AtPay::Button::Template do
     it "renders default template for all other providers" do
       subject.instance_eval { @options[:email] = "test@atpay.com" }
       subject.render.strip.must_equal "Default"
+    end
+  end
+
+  # Integration style tests
+  describe "#templates" do
+    let(:options) { {destination: "Partner Name", amount: 20 } }
+    
+    it "should render with all known template types" do
+      %w(test@hotmail.com test@yahoo.com test@atpay.com).each do |email|
+        subject.instance_eval { @options[:email] = email }
+        subject.render
+      end
     end
   end
 end
