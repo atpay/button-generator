@@ -17,11 +17,9 @@ module AtPay
           :user_data => nil
         }.update options
 
-        template
-      end
+        @options[:amount] = amount
 
-      def email
-        @options[:email]
+        template
       end
 
       def amount
@@ -35,7 +33,7 @@ module AtPay
       end
 
       def template
-        @template ||= Template.new(@options[:template])
+        @template ||= Template.new(@options[:template].update(:email => @options[:email], :amount => amount))
       end
 
       def to_html(token)
