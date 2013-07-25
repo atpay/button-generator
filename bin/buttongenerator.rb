@@ -57,10 +57,10 @@ class ButtonClient
       ruby buttongenerator.rb [prospect | member] [email] [default_partner_uuid] [wrapper] [image] [color] [type] [user_data]
 
       Prospect button creation example:
-      ruby buttongenerator.rb prospect 50.00 tom@atpay.com A3232-WEWRW-WR23X-IK3E3J true someimg FFFEEE unsure non
+      ruby buttongenerator.rb prospect 50.00 tom@example.com A3232-WEWRW-WR23X-IK3E3J true someimg FFFEEE unsure non
 
       Member button creation example:
-      ruby buttongenerator.rb member 50.00 tom@atpay.com A3232-WEWRW-WR23X-IK3E3J true someimg FFFEEE unsure non
+      ruby buttongenerator.rb member 50.00 tom@example.com A3232-WEWRW-WR23X-IK3E3J true someimg FFFEEE unsure non
     USAGE
 
     usage
