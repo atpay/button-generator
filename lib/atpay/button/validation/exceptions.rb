@@ -8,6 +8,8 @@ module AtPay
       class MissingEmail < ArgumentError; end
 
       class InvalidEmail < ArgumentError; end
+
+      class LengthError < ArgumentError; end
     end
   end
 end

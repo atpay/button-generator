@@ -16,10 +16,12 @@ describe AtPay::Button::Generator do
         gen.type.must_equal :validation
       end
     end
+  end
 
-    it "sets the user data"
-
-    it "runs the validations"
+  describe "#user_data=" do
+    it "doesn't allow more than 2500 characters" do
+      assert_raises(AtPay::Button::Validation::LengthError) { AtPay::Button::Generator.new params.merge({user_data: ('a' * 2501)}) }
+    end
   end
 
   describe "#set_targets" do
@@ -67,6 +69,18 @@ describe AtPay::Button::Generator do
   end
 
   describe "#generate" do
-    
+    it "returns an association of buttons and the source value used to build them" do
+      
+    end
+  end
+
+  describe "#build" do
+    before do
+      AtPay::Button::Button.expects(:button).at_least_once.with(:card, /.*/)
+    end
+
+    it "passes the source information to the Button class" do
+      subject.send(:build, :card, 'bob')
+    end
   end
 end
