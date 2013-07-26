@@ -28,12 +28,19 @@ module AtPay
           'content'      => amount,
           'dollar'       => amount.match(/\$\d+(?=\.)/).to_s,
           'cents'        => amount.match(/(?<=\.)[^.]*/).to_s,
-        }.update(@options.update(args)))
+        }.update(string_hash @options.update(args)))
       end
 
       private
       def amount
         number_to_currency(@options[:amount])
+      end
+
+      def string_hash(hsh)
+        hsh.inject({}) do |result, key|
+          result[key[0].to_s] = key[1]
+          result
+        end
       end
 
       def provider

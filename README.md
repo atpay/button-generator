@@ -120,13 +120,14 @@ will output the following to STDOUT:
             <tr>
               <td>
                 <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
-                  <img src='' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
+                  <img src='https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
                 </a>
               </td>
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
                   <tr>
-                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>  
+                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      Pay
                     </td>
                   </tr>
                   <tr>
@@ -163,13 +164,14 @@ will output the following to STDOUT:
             <tr>
               <td style='line-height:1px;'>
                 <a class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
-                  <img height='1' src='' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
+                  <img height='1' src='https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
                 </a>
               </td>
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
                   <tr>
-                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'> 
+                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      Pay
                     </td>
                   </tr>
                   <tr>
@@ -209,13 +211,14 @@ will output the following to STDOUT:
             <tr>
               <td>
                 <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
-                  <img src='' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
+                  <img src='https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
                 </a>
               </td>
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
                   <tr>
-                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>  
+                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      Pay
                     </td>
                   </tr>
                   <tr>
@@ -252,13 +255,14 @@ will output the following to STDOUT:
             <tr>
               <td style='line-height:1px;'>
                 <a class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
-                  <img height='1' src='' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
+                  <img height='1' src='https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
                 </a>
               </td>
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
                   <tr>
-                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'> 
+                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      Pay
                     </td>
                   </tr>
                   <tr>
@@ -289,6 +293,7 @@ will output the following to STDOUT:
   </a>
 </center>
 
+
 <center>
   <a border='0' class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;'>
     <table border='0' cellpadding='0' cellspacing='0' style='background-color:#6dbe45;'>
@@ -298,13 +303,14 @@ will output the following to STDOUT:
             <tr>
               <td>
                 <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
-                  <img src='' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
+                  <img src='https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
                 </a>
               </td>
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
                   <tr>
-                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>  
+                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      Pay
                     </td>
                   </tr>
                   <tr>
@@ -341,13 +347,14 @@ will output the following to STDOUT:
             <tr>
               <td style='line-height:1px;'>
                 <a class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
-                  <img height='1' src='' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
+                  <img height='1' src='https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
                 </a>
               </td>
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
                   <tr>
-                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'> 
+                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      Pay
                     </td>
                   </tr>
                   <tr>
@@ -377,6 +384,7 @@ will output the following to STDOUT:
     </table>
   </a>
 </center>
+
 
 
 ## Library Usage
