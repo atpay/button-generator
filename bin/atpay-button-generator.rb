@@ -18,7 +18,6 @@ load Gem.bin_path('atpay_buttons', 'atpay-button-generator.rb')
 
 class AtpayButtonGenerator
 
-
   # Create the button with the options already parsed and ready to go
   def initialize(options)
     AtPay::Button::Generator.new options
@@ -53,8 +52,6 @@ class ProcessArguments
       end
     end
 
-
-
     # Keep making buttons until we run out of data to parse
     while !ARGF.eof?
       data = ARGF.readline.strip.split(',')
@@ -75,14 +72,13 @@ class ProcessArguments
   # Reminder for first time users, or users who mess up
   def self.usage
     usage = <<-'USAGE'
-      To generate an Atpay Button, use the following syntax:
-      ruby buttongenerator.rb [prospect | member] [email] [default_partner_uuid] [wrapper] [image] [color] [type] [user_data]
+      To generate an Atpay Button, follow these steps:
+      Create a text file, e.g. data.txt:
 
-      Prospect button creation example:
-      ruby buttongenerator.rb prospect 50.00 tom@example.com A3232-WEWRW-WR23X-IK3E3J true someimg FFFEEE unsure non
+      environment,partner_id,private_key,public_key,title,subject,amount,email,card_token,color,image_url,wrap,templates,user_data
+      sandbox,9999,w98e9d8fs98,lknmnb5bmbtyf,My Button,Send Money to Me,50,@reger343dfg,FFFEEE,my_img.jpg,,,,
 
-      Member button creation example:
-      ruby buttongenerator.rb member 50.00 tom@example.com A3232-WEWRW-WR23X-IK3E3J true someimg FFFEEE unsure non
+      ruby atpay-button-generator.rb < data.txt
     USAGE
     usage
   end
@@ -94,7 +90,6 @@ trap("INT") do
   puts "Button Generator stopping.."
   exit
 end
-
 
 parser = ProcessArguments.new
 parser.process_args(ARGF)
