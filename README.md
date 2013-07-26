@@ -35,6 +35,39 @@ Title:
 Type
 
 
+image :
+   The URL to a small thumbnail image to be used in the button.
+   Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png
+
+
+color: 
+   The background color of the button.
+   Default: #6dbe45
+
+
+
+title:
+   String of text that will appear in generated button.
+   Default: Pay
+
+
+
+wrap:
+   Will use wrapped (with a styled div container) version of template.
+   Default: false
+
+
+
+templates:
+   Location of button templates. 
+   Default: /lib/atpay/button/templates
+
+ 
+
+
+
+
+
 ## Templates
 
 When using 2-click buttons in emails you want to make sure that they are compatible in as many environments (clients/browsers/devices) as possible. This can be a painstaking task because all environments render buttons differently. Buttons generated with this tool are cross platform and cross browser compatible. This means that the two-click experience can be enjoyed on over 93% of all browsers on all devices. The generator uses domain targeting and outputs html from a specific template depending on the email parameter. These templates include two sets of buttons. A CSS rule set will determine which button will be displayed on the end users device and browser. For more information on cross compatibility, visit https://www.atpay.com/cross-compatible-mailto-links-mobile-browsers.
