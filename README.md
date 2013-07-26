@@ -57,34 +57,42 @@ subject:
 credit_card_token:
   The credit card token associated with each email
 
+## Parameters
 
-image :
+<b>image :</b>
+<pre>
    The URL to a small thumbnail image to be used in the button.
    Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png
+</pre>
 
 
-color: 
+<b>color: </b>
+<pre>
    The background color of the button.
    Default: #6dbe45
+</pre>
 
 
-
-title:
+<b>title:</b>
+<pre>
    String of text that will appear in generated button.
    Default: Pay
+</pre>
 
 
-
-wrap:
+<b>wrap:</b>
+<pre>
    Will use wrapped (with a styled div container) version of template.
    Default: false
+</pre>
 
 
 
-templates:
+<b>templates:</b>
+<pre>
    Location of button templates. 
    Default: /lib/atpay/button/templates
-
+</pre> 
 
 
 ## Templates
