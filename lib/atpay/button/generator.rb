@@ -15,8 +15,6 @@ module AtPay
 
         validate_user_data
         @options[:amount] = amount
-
-        template
       end
 
       def amount
@@ -33,12 +31,12 @@ module AtPay
         session.security_key(@options.merge({type => source})).email_token
       end
 
-      def template
-        @template ||= Template.new(@options.update(:email => @options[:email], :amount => amount))
+      def template(email)
+        Template.new(@options.update(:email => email, :amount => amount))
       end
 
       def to_html(token, email)
-        @template.render(:token => token, email: email)
+        template(email).render(:token => token, email: email)
       end
 
       def generate(options)

@@ -7,7 +7,7 @@ describe AtPay::Button::Generator do
 
   describe "#new" do
     it "adds the provided options to the defaults" do
-      subject.instance_eval{ @options }.keys.sort.must_equal [:amount, :email, :partner_id, :public_key, :private_key, :env, :template, :title, :type, :group, :user_data].sort
+      subject.instance_eval{ @options }.keys.sort.must_equal [:amount, :partner_id, :public_key, :private_key, :env, :template, :title, :type, :group, :user_data].sort
     end
   end
 
@@ -26,23 +26,15 @@ describe AtPay::Button::Generator do
   end
 
   describe "#template" do
-    it "loads the template if not already loaded" do
-      AtPay::Button::Template.expects(:new)
+    it "instantiates the template for the given email" do
+      AtPay::Button::Template.expects(:new).with(any_parameters) { |options| options[:email] == 'bob@bob' }
 
-      subject
-    end
-
-    it "does't load the template if it has already been loaded" do
-      subject.template
-      AtPay::Button::Template.expects(:new).never
-
-      subject.template
+      subject.template 'bob@bob'
     end
   end
 
   describe "#to_html" do
     it "renders the template with the given token" do
-      subject.template
       AtPay::Button::Template.any_instance.expects(:render).with(token: 'token', email: 'bob@bob')
 
       subject.to_html 'token', 'bob@bob'
