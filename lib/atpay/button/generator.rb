@@ -41,13 +41,17 @@ module AtPay
         @template.render(:token => token, email: email)
       end
 
-      def generate(source, email, type = :card)
+      def generate(options)
+        options[:source] ? source = options[:source] : source = options[:email]
+        options[:type] ? type = options[:type] : type = :card
+        email = options[:email]
+
         to_html token(type, source), email
       end
 
-      def build(emails_to_cards)
-        emails_to_cards.collect do |email, card|
-          [email, generate(card, email)]
+      def build(token_map)
+        token_map.collect do |email, card|
+          [email, generate(email: email, source: card)]
         end
       end
 
