@@ -3,7 +3,7 @@
 The @Pay payment button generator creates @Pay 2-click buttons that you can send
 to your mailing list to collect funds via email. This library wraps the @Pay
 email tokens generated with the [@Pay Client
-Library][https://github.com/atpay/atpay-client], but handles the complexity of
+Library](https://github.com/atpay/atpay-client), but handles the complexity of
 email client compatibility for you. 
 
 You can use this library directly from your ruby-based application, or you can
@@ -49,22 +49,22 @@ The button generator requires a few flags up front:
 
 ### Parameters
 
---amount=(required):
+--amount (required):
   The amount a user should be charged for transactions after clicking this
 button
 
---subject=(required):
-  The subject of the mailto: email (the message that a user will be sending to
-@Pay's servers after clicking the button)
-
---private-key=(required):
+--private-key (required):
   The private key given to you by @Pay
 
---public-key=(required):
+--public-key (required):
   @Pay's public key, given to you by @Pay
 
---partner-id=(required):
+--partner-id (required):
   The partner ID given to you by @Pay
+
+--subject:
+  The subject of the mailto: email (the message that a user will be sending to
+@Pay's servers after clicking the button)
 
 --image:
    The URL to a small thumbnail image to be used in the button. Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png
@@ -72,10 +72,10 @@ button
 --color:
    The background color of the button.  Default: #6dbe45
 
---title=:
+--title:
   The title for each button
 
---wrap=:
+--wrap:
    Will use wrapped (with a styled div container) version of template.  Default: false
 
 --templates:
@@ -91,7 +91,7 @@ received from @Pay for that button:
 
 ### Example
 
-    $ atpay-button-generator --title="Pay" --amount=50.00 --subject="Payment for fifty bucks" --private-key="" --public-key="" --partner-id=20 < input.txt
+    $ atpay-button-generator --title "Pay" --amount 50.00 --subject="Payment for fifty bucks" --private-key "" --public-key "" --partner-id 20 < input.txt
 
 Where input.txt contains
 
@@ -106,9 +106,297 @@ test1@example.com, one to test2@example.com, and one to test3@example.com).
 
 will output the following to STDOUT:
  
-    <></>
-    <></a>
-    <></a>
+    test1@example.com <button_html>
+    test2@example.com <button_html>
+    test3@example.com <button_html>
+
+<style>
+  .ExternalClass a.outlook {display:inline; display: inline !important;font-size: 20px !important;}
+  .ExternalClass a.outlooksm {display:inline; display: inline !important;font-size: 12px !important;}
+  .ExternalClass a.not_outlook {display:none; display: none !important;}
+  .ExternalClass a.outlook table {background-color:#6dbe45 !important; font-size:10px !important; }
+  .ExternalClass a.outlook table td.main {width:145px !important; padding:3px 5px 5px 5px !important;}
+  .ExternalClass a.outlook table td img {width:auto !important; height: 39px !important; margin-left: 5px !important; margin-right:10px !important; margin-top:8px !important;}
+  .ExternalClass a.outlook table.sub {width: auto !important; height: auto !important;}
+  .ExtenralClass a.outlook td.title {font-size: 11px !important ; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;}
+  .ExternalClass a.outlook table.subB{float:left; margin:0; margin-left:5px !important;}
+</style>
+<center>
+
+  <a border='0' class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;'>
+    <table border='0' cellpadding='0' cellspacing='0' style='background-color:#6dbe45;'>
+      <tr class='main'>
+        <td class='main' style='padding:3px 5px 5px 5px;' width='145'>
+          <table>
+            <tr>
+              <td>
+                <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
+                  <img src='' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
+                </a>
+              </td>
+              <td>
+                <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
+                  <tr>
+                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
+                        <tr>
+                          <td style='padding:0; margin:0; font-size: 20px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:25px;' valign='top'>
+                            <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
+                              $12
+                            </a>
+                          </td>
+                          <td style='padding:0; margin:0; font-size:14px; text-decoration:underline;padding-left:2px; color: #ffffff; font-family: Tahoma; vertical-align:top;' valign='top'>
+                            <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
+                              00
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </a>
+  <a border='0' class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;  font-size:0px;  width:0px; height: 0px;'>
+    <table border='0' cellpadding='0' cellspacing='0' height='0' style='background-color:#ffffff; overflow: hidden;  font-size: 0px; ' width='0'>
+      <tr class='main'>
+        <td class='main' style='padding: 0px;' width='0'>
+          <table border='0' cellpadding='0' cellspacing='0' class='sub' height='' style='background-color:#ffffff; overflow: hidden;' width=''>
+            <tr>
+              <td style='line-height:1px;'>
+                <a class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
+                  <img height='1' src='' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
+                </a>
+              </td>
+              <td>
+                <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
+                  <tr>
+                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
+                        <tr>
+                          <td style='padding:0; margin:0; font-size: 0px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:0px;' valign='top'>
+                            <a class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
+                              $12
+                            </a>
+                          </td>
+                          <td style='padding:0; margin:0; font-size:0px; text-decoration:underline;padding-left:0px; color: #ffffff; font-family: Tahoma; vertical-align:top;' valign='top'>
+                            <a class='outlooksm' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
+                              00
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </a>
+</center>
+
+<center>
+
+  <a border='0' class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;'>
+    <table border='0' cellpadding='0' cellspacing='0' style='background-color:#6dbe45;'>
+      <tr class='main'>
+        <td class='main' style='padding:3px 5px 5px 5px;' width='145'>
+          <table>
+            <tr>
+              <td>
+                <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
+                  <img src='' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
+                </a>
+              </td>
+              <td>
+                <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
+                  <tr>
+                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
+                        <tr>
+                          <td style='padding:0; margin:0; font-size: 20px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:25px;' valign='top'>
+                            <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
+                              $12
+                            </a>
+                          </td>
+                          <td style='padding:0; margin:0; font-size:14px; text-decoration:underline;padding-left:2px; color: #ffffff; font-family: Tahoma; vertical-align:top;' valign='top'>
+                            <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
+                              00
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </a>
+  <a border='0' class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;  font-size:0px;  width:0px; height: 0px;'>
+    <table border='0' cellpadding='0' cellspacing='0' height='0' style='background-color:#ffffff; overflow: hidden;  font-size: 0px; ' width='0'>
+      <tr class='main'>
+        <td class='main' style='padding: 0px;' width='0'>
+          <table border='0' cellpadding='0' cellspacing='0' class='sub' height='' style='background-color:#ffffff; overflow: hidden;' width=''>
+            <tr>
+              <td style='line-height:1px;'>
+                <a class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
+                  <img height='1' src='' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
+                </a>
+              </td>
+              <td>
+                <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
+                  <tr>
+                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
+                        <tr>
+                          <td style='padding:0; margin:0; font-size: 0px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:0px;' valign='top'>
+                            <a class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
+                              $12
+                            </a>
+                          </td>
+                          <td style='padding:0; margin:0; font-size:0px; text-decoration:underline;padding-left:0px; color: #ffffff; font-family: Tahoma; vertical-align:top;' valign='top'>
+                            <a class='outlooksm' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
+                              00
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </a>
+</center>
+
+<center>
+
+  <a border='0' class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;'>
+    <table border='0' cellpadding='0' cellspacing='0' style='background-color:#6dbe45;'>
+      <tr class='main'>
+        <td class='main' style='padding:3px 5px 5px 5px;' width='145'>
+          <table>
+            <tr>
+              <td>
+                <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
+                  <img src='' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
+                </a>
+              </td>
+              <td>
+                <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
+                  <tr>
+                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
+                        <tr>
+                          <td style='padding:0; margin:0; font-size: 20px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:25px;' valign='top'>
+                            <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
+                              $12
+                            </a>
+                          </td>
+                          <td style='padding:0; margin:0; font-size:14px; text-decoration:underline;padding-left:2px; color: #ffffff; font-family: Tahoma; vertical-align:top;' valign='top'>
+                            <a class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none; display:inline;'>
+                              00
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </a>
+  <a border='0' class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;  font-size:0px;  width:0px; height: 0px;'>
+    <table border='0' cellpadding='0' cellspacing='0' height='0' style='background-color:#ffffff; overflow: hidden;  font-size: 0px; ' width='0'>
+      <tr class='main'>
+        <td class='main' style='padding: 0px;' width='0'>
+          <table border='0' cellpadding='0' cellspacing='0' class='sub' height='' style='background-color:#ffffff; overflow: hidden;' width=''>
+            <tr>
+              <td style='line-height:1px;'>
+                <a class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
+                  <img height='1' src='' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
+                </a>
+              </td>
+              <td>
+                <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
+                  <tr>
+                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
+                        <tr>
+                          <td style='padding:0; margin:0; font-size: 0px; color: #ffffff; font-family: Tahoma; vertical-align:top; line-height:0px;' valign='top'>
+                            <a class='outlook' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
+                              $12
+                            </a>
+                          </td>
+                          <td style='padding:0; margin:0; font-size:0px; text-decoration:underline;padding-left:0px; color: #ffffff; font-family: Tahoma; vertical-align:top;' valign='top'>
+                            <a class='outlooksm' href='https://www.hotmail.com/secure/start?action=compose&to=transaction@secure.atpay.com&subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='color:#ffffff; text-decoration:none; border:none;'>
+                              00
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </a>
+</center>
+
 
 ## Library Usage
 
