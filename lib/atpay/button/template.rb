@@ -22,12 +22,12 @@ module AtPay
 
       def render(args={})
         template.render({
-          :url          => default_mailto,
-          :outlook_url  => outlook_mailto,
-          :yahoo_url    => yahoo_mailto,
-          :content      => amount,
-          :dollar       => amount.match(/\$\d+(?=\.)/).to_s,
-          :cents        => amount.match(/(?<=\.)[^.]*/).to_s,
+          'url'          => default_mailto,
+          'outlook_url'  => outlook_mailto,
+          'yahoo_url'    => yahoo_mailto,
+          'content'      => amount,
+          'dollar'       => amount.match(/\$\d+(?=\.)/).to_s,
+          'cents'        => amount.match(/(?<=\.)[^.]*/).to_s,
         }.update(@options.update(args)))
       end
 
@@ -66,9 +66,9 @@ module AtPay
   
       def mailto_body
         URI::encode(mailto_body_template.render({
-          :amount => amount,
-          :name => @options[:destination],
-          :token => @options[:token]
+          'amount' => amount,
+          'name' => @options[:destination],
+          'token' => @options[:token]
         }))
       end
 
