@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe AtPay::Button::Generator do
   let(:session) { mock }
-  let(:options) { {partner_id: 1, public_key: 'bob', private_key: 'privatebob', amount: '12', env: :sandbox, user_data: 'aaaaaaaa'} }
+  let(:public_key) { '06zK82iu9NUUMmDiZsEvoUH25tbIE6R3R+zPnDK8YGQ=' }
+  let(:private_key) { 'plBs9X+Zvr65z6iCa0oLNdAEGYZ85Dzf74Qy1yPTris=' }
+  let(:options) { {partner_id: 1, public_key: public_key, private_key: private_key, amount: '12', env: :sandbox, user_data: 'aaaaaaaa'} }
   let(:subject) { AtPay::Button::Generator.new options }
 
   describe "#new" do

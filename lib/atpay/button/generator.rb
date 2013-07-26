@@ -4,6 +4,12 @@ module AtPay
     end
 
     class Generator
+      # TODO:  This should really move to the underlying token library.
+      TOKEN_TYPES = {
+        payment: nil,
+        validation: 1
+      }
+
       def initialize(options)
         @options = { 
           :title => "Pay",
@@ -12,6 +18,8 @@ module AtPay
           :user_data => nil,
           :template => {}
         }.update options
+
+        @options[:version] = TOKEN_TYPES[@options[:type]] if TOKEN_TYPES[@options[:type]]
 
         validate_user_data
         @options[:amount] = amount
@@ -36,7 +44,7 @@ module AtPay
       end
 
       def to_html(token, email)
-        template(email).render(:token => token, email: email)
+        template(email).render(token: token, email: email)
       end
 
       def generate(options)
