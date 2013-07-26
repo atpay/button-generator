@@ -74,7 +74,7 @@ module AtPay
       # This is processed as liquid - in the future we can allow overwriting the
       # template here and creating custom buttons.
       def template
-        @template ||= Liquid::Template.parse(template_content)
+        Liquid::Template.parse(template_content)
       end
 
       def template_content
@@ -84,7 +84,6 @@ module AtPay
           when :yahoo
             File.read(File.join(@options[:templates], "#{wrap_prefix}yahoo.liquid"))
           when :default
-            binding.pry
             File.read(File.join(@options[:templates], "#{wrap_prefix}default.liquid"))
         end
       end
