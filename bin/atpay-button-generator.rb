@@ -14,3 +14,84 @@ require 'rubygems'
 require 'bundler/setup'
 
 load Gem.bin_path('atpay_buttons', 'atpay-button-generator.rb')
+
+
+class AtpayButtonGenerator
+
+  # Create the button with the options already parsed and ready to go
+  def initialize(options)
+    AtPay::Button::Generator.new options
+  end
+
+end
+
+
+class ProcessArguments
+
+  # Categorize the params for potential future checking
+  def initialize
+
+    session_params = ['environment','partner_id','private_key','public_key']
+    info_params = ['title','subject','amount','email','credit_card_token', 'user_data']
+    template_params = ['color','image_url','wrap','templates']
+    @all_params = session_params.concat(info_params).concat(template_params)
+
+  end
+
+  # Create buttons based on the passed in data
+  def process_args
+
+    # The first line contains the parameter list in whatever order the user specifies
+    keys = ARGF.readline.strip.split(',')
+
+    # Make sure all the required parameters are there
+    @all_params.each do |s|
+      unless keys.include?(s) 
+        puts self.usage
+        puts "\n\nYou are missing the key " + s + " from your paramater list"; exit;
+      end
+    end
+
+    # Keep making buttons until we run out of data to parse
+    while !ARGF.eof?
+      data = ARGF.readline.strip.split(',')
+      if data.length != keys.length
+        puts "\n\nThe data list does not match the key list"; exit;
+      else
+        options = Hash.new
+        keys.each_index do |i|
+          options[keys[i].to_sym] = data[i]
+        end
+        button = AtPayButtonGenerator.new options
+        puts button.generate
+      end
+    end
+
+  end
+
+  # Reminder for first time users, or users who mess up
+  def self.usage
+    usage = <<-'USAGE'
+      To generate an Atpay Button, follow these steps:
+      Create a text file, e.g. data.txt:
+
+      environment,partner_id,private_key,public_key,title,subject,amount,email,card_token,color,image_url,wrap,templates,user_data
+      sandbox,9999,w98e9d8fs98,lknmnb5bmbtyf,My Button,Send Money to Me,50,@reger343dfg,FFFEEE,my_img.jpg,,,,
+
+      ruby atpay-button-generator.rb < data.txt
+    USAGE
+    usage
+  end
+
+end
+
+# In case the user needs to stop the generator
+trap("INT") do
+  puts "Button Generator stopping.."
+  exit
+end
+
+parser = ProcessArguments.new
+parser.process_args(ARGF)
+
+
