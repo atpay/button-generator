@@ -91,7 +91,7 @@ received from @Pay for that button:
 
 ### Example
 
-    $ atpay-button-generator --title "Pay" --amount 50.00 --subject="Payment for fifty bucks" --private-key "" --public-key "" --partner-id 20 < input.txt
+    $ atpay-button-generator --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "" --public-key "" --partner-id 20 < input.txt
 
 Where input.txt contains
 
@@ -122,7 +122,6 @@ will output the following to STDOUT:
   .ExternalClass a.outlook table.subB{float:left; margin:0; margin-left:5px !important;}
 </style>
 <center>
-
   <a border='0' class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;'>
     <table border='0' cellpadding='0' cellspacing='0' style='background-color:#6dbe45;'>
       <tr class='main'>
@@ -137,8 +136,7 @@ will output the following to STDOUT:
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
                   <tr>
-                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
-                      
+                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>  
                     </td>
                   </tr>
                   <tr>
@@ -181,8 +179,7 @@ will output the following to STDOUT:
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
                   <tr>
-                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
-                      
+                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'> 
                     </td>
                   </tr>
                   <tr>
@@ -214,7 +211,6 @@ will output the following to STDOUT:
 </center>
 
 <center>
-
   <a border='0' class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;'>
     <table border='0' cellpadding='0' cellspacing='0' style='background-color:#6dbe45;'>
       <tr class='main'>
@@ -229,8 +225,7 @@ will output the following to STDOUT:
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
                   <tr>
-                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
-                      
+                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>  
                     </td>
                   </tr>
                   <tr>
@@ -273,8 +268,7 @@ will output the following to STDOUT:
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
                   <tr>
-                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
-                      
+                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'> 
                     </td>
                   </tr>
                   <tr>
@@ -306,7 +300,6 @@ will output the following to STDOUT:
 </center>
 
 <center>
-
   <a border='0' class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;'>
     <table border='0' cellpadding='0' cellspacing='0' style='background-color:#6dbe45;'>
       <tr class='main'>
@@ -321,8 +314,7 @@ will output the following to STDOUT:
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
                   <tr>
-                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
-                      
+                    <td style='font-size: 11px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>  
                     </td>
                   </tr>
                   <tr>
@@ -365,8 +357,7 @@ will output the following to STDOUT:
               <td>
                 <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
                   <tr>
-                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
-                      
+                    <td class='title' style='font-size: 0px; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;'> 
                     </td>
                   </tr>
                   <tr>
