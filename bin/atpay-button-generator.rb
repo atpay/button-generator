@@ -15,22 +15,22 @@ require 'bundler/setup'
 
 load Gem.bin_path('atpay_buttons', 'atpay-button-generator.rb')
 
-
 class AtpayButtonGenerator
+  attr_accessor :button
 
   # Create the button with the options already parsed and ready to go
   def initialize(options)
-    AtPay::Button::Generator.new options
+    self.button = AtPay::Button::Generator.new options
   end
 
 end
 
-
 class ProcessArguments
 
-  # Categorize the params for potential future checking
+  # Populate the arguments parser
   def initialize
 
+    # Categorize the params for potential future checking
     session_params = ['environment','partner_id','private_key','public_key']
     info_params = ['title','subject','amount','email','credit_card_token', 'user_data']
     template_params = ['color','image_url','wrap','templates']
@@ -62,7 +62,8 @@ class ProcessArguments
         keys.each_index do |i|
           options[keys[i].to_sym] = data[i]
         end
-        button = AtPayButtonGenerator.new options
+        button = AtPayButtonGenerator.new(options).button
+        # Generates button based on Generator's generate method
         puts button.generate
       end
     end
@@ -91,7 +92,10 @@ trap("INT") do
   exit
 end
 
-parser = ProcessArguments.new
-parser.process_args(ARGF)
+# Parse the arguments
+begin
+  parser = ProcessArguments.new
+  parser.process_args(ARGF)
+end
 
 
