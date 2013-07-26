@@ -51,7 +51,7 @@ module AtPay
 
       def build(token_map)
         token_map.collect do |email, card|
-          [email, generate(email: email, source: card)]
+          card ? [email, generate(email: email, source: card)] : [email, generate(email: email, type: :email)]
         end
       end
 

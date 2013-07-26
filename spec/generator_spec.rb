@@ -84,5 +84,9 @@ describe AtPay::Button::Generator do
     it "builds a single button" do
       subject.build({ 'bob@bob' => 'card' }).must_equal [['bob@bob', 'button']]
     end
+
+    it "builds a button when only given an email" do
+      subject.build(['bob@bob']).must_equal [['bob@bob', 'button']]
+    end
   end
 end
