@@ -60,10 +60,15 @@ module AtPay
         "mailto:#{@options[:processor]}?subject=#{mailto_subject}&body=#{mailto_body}"
       end
 
+      # Load the mailto body template from the specified location
       def mailto_body_template
         Liquid::Template.parse(File.read(File.join(@options[:templates], "mailto_body.liquid")))
       end
   
+      # Parse the mailto body, this is where we inject the token, name and amount values we received in
+      # the options.
+      #
+      # @return [String]
       def mailto_body
         URI::encode(mailto_body_template.render({
           'amount' => amount,
@@ -78,6 +83,8 @@ module AtPay
         Liquid::Template.parse(template_content)
       end
 
+      # Determine which template to load based on the domain of the email address.
+      # This preserves the mailto behavior across email environments.
       def template_content
         wrap_prefix = @options[:wrap] ? "wrap_" : ""
 
