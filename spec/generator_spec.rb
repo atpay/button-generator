@@ -50,14 +50,24 @@ describe AtPay::Button::Generator do
   end
 
   describe "#generate" do
-    it "builds an html button" do
+    before do
       @dummy_key = mock
       @dummy_key.expects(:email_token).returns('token')
       AtPay::Button::Template.any_instance.expects(:render).returns('button')
       session.expects(:security_key).returns(@dummy_key)
       AtPay::Session.stubs(:new).returns(session)
+    end
 
-      subject.generate('card', :card).must_equal 'button'
+    it "builds an html button when given only the email" do
+      subject.generate(email: 'bob@bob').must_equal 'button'
+    end
+
+    it "builds an html button when given the email and source" do
+      subject.generate(email: 'bob@bob', source: '3838383').must_equal 'button'
+    end
+
+    it "builds an html button when given the email, source and type" do
+      subject.generate(email: 'bob@bob', source: '38383838', type: :card).must_equal 'button'
     end
   end
 
