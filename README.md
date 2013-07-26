@@ -32,74 +32,85 @@ can install the gem on your system with:
 
 ruby >= 1.9
 
-## Usage
+## Command Line Usage
 
-To use the button generator, you can use STDIN to feed arguments to the generator and create buttons.
-For example:
+You'll need a partner id, public key and private key from your @Pay signup. More
+advanced implementations may be using OAuth to collect this information from
+multiple partners and can generate buttons on behalf of merchants that use their
+system. 
 
-You have a file called button_arguments.txt which contains the following parameters:
+After installing the atpay-button-generator gem, you'll have
+`atpay-button-generator` script in your gem binpath. By running it directly
+you'll get help output:
 
-  title,amount,email,subject,credit_card_token,image,color,wrap,templates
-  title one,50,one@example.com,send money,@dsdsf2,myimg.jpg,#FFFEE
-  title two,60,two@example.com,send money,@rfsf234,myimg.jpg,#FFFEE
-  title three,50,three@example.com,send money,@vb321,myimg.jpg,#FFFEE
+    $ atpay-button-generator
 
-ruby atpay-button-generator.rb < button_arguments.txt
+The button generator requires a few flags up front:
 
+### Parameters
 
-## Parameters
+--amount=(required):
+  The amount a user should be charged for transactions after clicking this
+button
 
-title:
-  The title of each button
+--subject=(required):
+  The subject of the mailto: email (the message that a user will be sending to
+@Pay's servers after clicking the button)
 
-amount:
-  The prices that each button should be associated with
+--private-key=(required):
+  The private key given to you by @Pay
 
-email:
-  The list of emails you wish to send to users
+--public-key=(required):
+  @Pay's public key, given to you by @Pay
 
-subject:
-  The subject associated with each email that is sent when the button is clicked
+--partner-id=(required):
+  The partner ID given to you by @Pay
 
-credit_card_token:
-  The credit card token associated with each email
+--image:
+   The URL to a small thumbnail image to be used in the button. Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png
 
-## Parameters
+--color:
+   The background color of the button.  Default: #6dbe45
 
-<b>image :</b>
-<pre>
-   The URL to a small thumbnail image to be used in the button.
-   Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png
-</pre>
+--title=:
+  The title for each button
 
+--wrap=:
+   Will use wrapped (with a styled div container) version of template.  Default: false
 
-<b>color: </b>
-<pre>
-   The background color of the button.
-   Default: #6dbe45
-</pre>
+--templates:
+   Location of button templates.  Default: ./lib/atpay/button/templates
 
+And then reads from STDIN a comma delimmited file with each line containing the
+email address you're sending the button to and the credit card token you've
+received from @Pay for that button:
 
-<b>title:</b>
-<pre>
-   String of text that will appear in generated button.
-   Default: Pay
-</pre>
+    test1@example.com,TL1UwJFXVN7e4p6+0B5N8hy4qQyqeNxVllmC663MLcMupuAWXdHJ9g8PRAnlIh+AMZBgpaIrfWStZ5/3hYi6vCAV7q6+3M6LLqxk
+    test2@example.com,XKCF2E9QZPwdOSwfTQJzZC7byLt3PH8Tr1KhmLkfRHwfNJD5XbDRMrxGYOiSnfrLEKNzm9+a4r++bpUG2hNrPyYLpNgph3BXAAfC
+    test3@example.com,iQOxdBV4KrFuPFgyywxytfbsD/rURrzmlADmg1QFP2VHd/kTnkXNpnp2Utv4RS0Zz2YeOloilMhljsOcRVA2YwSu9knwF1h6tNjE
 
+### Example
 
-<b>wrap:</b>
-<pre>
-   Will use wrapped (with a styled div container) version of template.
-   Default: false
-</pre>
+    $ atpay-button-generator --title="Pay" --amount=50.00 --subject="Payment for fifty bucks" --private-key="" --public-key="" --partner-id=20 < input.txt
 
+Where input.txt contains
 
+    test1@example.com,TL1UwJFXVN7e4p6+0B5N8hy4qQyqeNxVllmC663MLcMupuAWXdHJ9g8PRAnlIh+AMZBgpaIrfWStZ5/3hYi6vCAV7q6+3M6LLqxk
+    test2@example.com,XKCF2E9QZPwdOSwfTQJzZC7byLt3PH8Tr1KhmLkfRHwfNJD5XbDRMrxGYOiSnfrLEKNzm9+a4r++bpUG2hNrPyYLpNgph3BXAAfC
+    test3@example.com,iQOxdBV4KrFuPFgyywxytfbsD/rURrzmlADmg1QFP2VHd/kTnkXNpnp2Utv4RS0Zz2YeOloilMhljsOcRVA2YwSu9knwF1h6tNjE
 
-<b>templates:</b>
-<pre>
-   Location of button templates. 
-   Default: /lib/atpay/button/templates
-</pre> 
+will output three buttons, one for each of the email addresses above, in HTML
+format, one per line. If you're sending out one offer per button, you'll simply
+include each line in the outgoing message to the recipient (one to
+test1@example.com, one to test2@example.com, and one to test3@example.com).
+
+will output the following to STDOUT:
+ 
+    <></>
+    <></a>
+    <></a>
+
+## Library Usage
 
 
 ## Templates
@@ -109,17 +120,3 @@ When using 2-click buttons in emails you want to make sure that they are compati
 The generator uses a set of four default templates located in "lib/atpay/button/templates/". The yahoo.liquid template will be used for yahoo emails. The default.liquid template is for all other email providers. There are also versions prefixed with "wrap_" that will be used if the wrap parameter is set to "true". These "wrapped" templates are simply versions with a styled div that hold the buttons. 
 
 To use your own custom templates, you can download the provided default versions. After you make your modifications, set the template parameter to the location of your modified templates.  
-
-
-
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-=======
-=======
-button-generator
