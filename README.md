@@ -110,17 +110,7 @@ will output the following to STDOUT:
     test2@example.com <button_html>
     test3@example.com <button_html>
 
-<style>
-  .ExternalClass a.outlook {display:inline; display: inline !important;font-size: 20px !important;}
-  .ExternalClass a.outlooksm {display:inline; display: inline !important;font-size: 12px !important;}
-  .ExternalClass a.not_outlook {display:none; display: none !important;}
-  .ExternalClass a.outlook table {background-color:#6dbe45 !important; font-size:10px !important; }
-  .ExternalClass a.outlook table td.main {width:145px !important; padding:3px 5px 5px 5px !important;}
-  .ExternalClass a.outlook table td img {width:auto !important; height: 39px !important; margin-left: 5px !important; margin-right:10px !important; margin-top:8px !important;}
-  .ExternalClass a.outlook table.sub {width: auto !important; height: auto !important;}
-  .ExtenralClass a.outlook td.title {font-size: 11px !important ; color: #ffffff; font-family: Tahoma; text-align:center; padding:0; margin:0;}
-  .ExternalClass a.outlook table.subB{float:left; margin:0; margin-left:5px !important;}
-</style>
+
 <center>
   <a border='0' class='not_outlook' href='mailto:transaction@secure.atpay.com?subject=Submit%20@Pay%20Payment&body=Please%20press%20send%20to%20complete%20your%20transaction.%20Thank%20you%20for%20your%20payment%20of%20$12.00%20to%20.%20Your%20receipt%20will%20be%20emailed%20to%20you%20shortly.%20Here%20is%20the%20ID%20code%20that%20will%20expedite%20your%20transaction%20%0A' style='text-underline:none;'>
     <table border='0' cellpadding='0' cellspacing='0' style='background-color:#6dbe45;'>
