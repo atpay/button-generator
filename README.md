@@ -1,10 +1,21 @@
-# Atpay::Button::Generator
+# @Pay Payment Button Generator
 
-Atpay button generator library.
+The @Pay payment button generator creates @Pay 2-click buttons that you can send
+to your mailing list to collect funds via email. This library wraps the @Pay
+email tokens generated with the [@Pay Client
+Library][https://github.com/atpay/atpay-client], but handles the complexity of
+email client compatibility for you. 
+
+You can use this library directly from your ruby-based application, or you can
+interface iwth it via the command line from most any language.
+
+The provided Liquid templates are customizable here, or can be used as
+a starting point for your own implementation.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+If your application is based on ruby and you use Bundler, add the following line
+to your application's Gemfile:
 
     gem 'atpay-button-generator'
 
@@ -12,17 +23,14 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+If you'd like to use the command line interface, or are not using Bundler, you
+can install the gem on your system with:
 
     $ gem install atpay-button-generator
 
 ## Requirements
 
-Ruby 3.2
-
-## Installation
-
-gem install atpay-button-generator
+ruby >= 1.9
 
 ## Usage
 
@@ -40,7 +48,6 @@ ruby atpay-button-generator.rb < button_arguments.txt
 
 
 ## Parameters
-
 
 title:
   The title of each button
