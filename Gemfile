@@ -5,7 +5,6 @@ gemspec
 
 gem 'pry'
 gem 'liquid'
-gem 'minitest'
 gem 'atpay_tokens'
 gem 'simplecov'
 gem 'activesupport', '4.0.0'
