@@ -7,7 +7,7 @@ describe AtPay::Button::Generator do
 
   describe "#new" do
     it "adds the provided options to the defaults" do
-      subject.instance_eval{ @options }.keys.sort.must_equal [:amount, :email, :partner_id, :public_key, :private_key, :env, :title, :type, :group, :user_data].sort
+      subject.instance_eval{ @options }.keys.sort.must_equal [:amount, :email, :partner_id, :public_key, :private_key, :env, :template, :title, :type, :group, :user_data].sort
     end
   end
 
