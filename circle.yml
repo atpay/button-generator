@@ -12,3 +12,6 @@ test:
 machine:
   environment:
     LD_LIBRARY_PATH: lib
+
+  ruby:
+    version: 2.0.0-p195
