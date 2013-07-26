@@ -1,5 +1,6 @@
 require 'liquid'
 require 'active_support/number_helper'
+require 'uri'
 
 module AtPay
   module Button
