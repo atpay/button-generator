@@ -113,7 +113,7 @@ will output the following to STDOUT:
 
 the button in the example above looks like this:
 
-![Example Button](https://github.com/atpay/button-generator/tree/master/imgs/sample_button.png)
+![Example Button](https://github.com/atpay/button-generator/blob/master/imgs/sample_button.png?raw=true)
 
 ## Library Usage
 
