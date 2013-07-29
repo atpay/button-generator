@@ -85,9 +85,6 @@ The button generator requires a few flags up front:
 <p><strong>user_data:</strong> <br /> 
 <i> &nbsp; &nbsp; &nbsp; Optional user data  to be passed in as a string for your use. </i></p>
 
-<p><strong>type:</strong> <br /> 
-<i> &nbsp; &nbsp; &nbsp; Default: payment</i></p>
-
 <p><strong>input<sup>*</sup>: </strong> <br /> 
 <i> &nbsp; &nbsp; &nbsp; Input File
 <br />&nbsp; &nbsp; &nbsp;Default: $stdin</i></p>
@@ -125,6 +122,38 @@ will output the following to STDOUT:
 the button in the example above looks like this:
 
 ![Example Button](https://github.com/atpay/button-generator/blob/master/imgs/sample_button.png?raw=true)
+
+
+## Library Usage
+
+First include the 'atpay-button-generator' gem.
+
+    require 'atpay-button-generator'
+    
+    
+Collect and parse parameters
+
+<code>
+
+def parse
+  @targets = []
+  
+  while !@params[:input].eof?
+    data = @params[:input].readline.strip.split(',')
+    @targets << [data[0], data[1]]
+  end
+end
+
+</code>
+
+Build buttons 
+
+<code>
+def build
+  generator = AtPay::Button::Generator.new @params.dup
+  @buttons = generator.build @targets
+end
+</code>
 
 
 ## Templates
