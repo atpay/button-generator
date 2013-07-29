@@ -49,37 +49,38 @@ The button generator requires a few flags up front:
 
 ### Parameters
 
---amount (required):
-  The amount a user should be charged for transactions after clicking this
-button
+<strong>amount (required): </strong> 
+<pre>   The amount a user should be charged for transactions after clicking this button</pre>
+ 
+<strong>private-key (required):</strong>
+<pre>   The private key given to you by @Pay</pre>
 
---private-key (required):
-  The private key given to you by @Pay
+<strong>public-key (required):</strong>
+<pre>   @Pay's public key, given to you by @Pay</pre>
 
---public-key (required):
-  @Pay's public key, given to you by @Pay
+<strong>partner-id (required):</strong>
+<pre>   The partner ID given to you by @Pay</pre>
 
---partner-id (required):
-  The partner ID given to you by @Pay
+<strong>subject:</strong>
+<pre>   The subject of the mailto: email (the message that a user will be sending to @Pay's servers after clicking the button)</pre>
 
---subject:
-  The subject of the mailto: email (the message that a user will be sending to
-@Pay's servers after clicking the button)
 
---image:
-   The URL to a small thumbnail image to be used in the button. Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png
+<strong>image:</strong>
+<pre>   The URL to a small thumbnail image to be used in the button. Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png</pre>
 
---color:
-   The background color of the button.  Default: #6dbe45
 
---title:
-  The title for each button
+<strong>color:</strong>
+<pre>   The background color of the button.  Default: #6dbe45</pre>
 
---wrap:
-   Will use wrapped (with a styled div container) version of template.  Default: false
+<strong>title:</strong>
+<pre>   The title for each button</pre>
 
---templates:
-   Location of button templates.  Default: ./lib/atpay/button/templates
+<strong>wrap:</strong>
+<pre>   Will use wrapped (with a styled div container) version of template.  Default: false</pre>
+
+
+<strong>templates:</strong>
+<pre>   Location of button templates.  Default: ./lib/atpay/button/templates</pre>
 
 And then reads from STDIN a comma delimmited file with each line containing the
 email address you're sending the button to and the credit card token you've
