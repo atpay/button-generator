@@ -133,8 +133,7 @@ First include the 'atpay-button-generator' gem.
     
 Collect and parse parameters
 
-<code>
-
+<pre>
 def parse
   @targets = []
   
@@ -143,17 +142,15 @@ def parse
     @targets << [data[0], data[1]]
   end
 end
-
-</code>
+</pre>
 
 Build buttons 
-
-<code>
+<pre>
 def build
   generator = AtPay::Button::Generator.new @params.dup
   @buttons = generator.build @targets
 end
-</code>
+</pre>
 
 
 ## Templates
