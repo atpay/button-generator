@@ -50,37 +50,37 @@ The button generator requires a few flags up front:
 ### Parameters
 
 <strong>amount (required): </strong> 
-<p style ="margin-left:20px; width:80%"> <i>   The amount a user should be charged for transactions after clicking this button</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; The amount a user should be charged for transactions after clicking this button</i></p>
  
 <strong>private-key (required):</strong>
-<p style ="margin-left:20px; width:80%"> <i>   The private key given to you by @Pay</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; The private key given to you by @Pay</i></p>
 
 <strong>public-key (required):</strong>
-<p style ="margin-left:20px; width:80%"> <i>   @Pay's public key, given to you by @Pay</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; @Pay's public key, given to you by @Pay</i></p>
 
 <strong>partner-id (required):</strong>
-<p style ="margin-left:20px; width:80%"> <i>   The partner ID given to you by @Pay</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; The partner ID given to you by @Pay</i></p>
 
 <strong>subject:</strong>
-<p style ="margin-left:20px; width:80%"> <i>   The subject of the mailto: email (the message that a user will be sending to @Pay's servers after clicking the button)</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; The subject of the mailto: email (the message that a user will be sending to @Pay's servers after clicking the button)</i></p>
 
 
 <strong>image:</strong>
-<p style ="margin-left:20px; width:80%"> <i>   The URL to a small thumbnail image to be used in the button. Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; The URL to a small thumbnail image to be used in the button. <br />Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png</i></p>
 
 
 <strong>color:</strong>
-<p style ="margin-left:20px; width:80%"> <i>   The background color of the button.  Default: #6dbe45</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; The background color of the button.  Default: #6dbe45</i></p>
 
 <strong>title:</strong>
-<p style ="margin-left:20px; width:80%"> <i>   The title for each button</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; The title for each button</i></p>
 
 <strong>wrap:</strong>
-<p style ="margin-left:20px; width:80%"> <i>   Will use wrapped (with a styled div container) version of template.  Default: false</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; Will use wrapped (with a styled div container) version of template. <br /> &nbsp; &nbsp; &nbsp; Default: false</i></p>
 
 
 <strong>templates:</strong>
-<p style ="margin-left:20px; width:80%"> <i>   Location of button templates.  Default: ./lib/atpay/button/templates</i></p>
+<p><i> &nbsp; &nbsp; &nbsp; Location of button templates.  Default: ./lib/atpay/button/templates</i></p>
 
 And then reads from STDIN a comma delimmited file with each line containing the
 email address you're sending the button to and the credit card token you've
