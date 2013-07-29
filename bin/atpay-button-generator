@@ -50,7 +50,7 @@ def parse
 end
 
 def build
-  generator = AtPay::Button::Generator.new @opts
+  generator = AtPay::Button::Generator.new @opts.dup
   @buttons = generator.build @targets
 end
 
