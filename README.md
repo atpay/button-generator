@@ -7,7 +7,7 @@ Library](https://github.com/atpay/atpay-client), but handles the complexity of
 email client compatibility for you. 
 
 You can use this library directly from your ruby-based application, or you can
-interface iwth it via the command line from most any language.
+interface with it via the command line from most any language.
 
 The provided Liquid templates are customizable here, or can be used as
 a starting point for your own implementation.
@@ -80,7 +80,7 @@ The button generator requires a few flags up front:
 <i> &nbsp; &nbsp; &nbsp; Location of button templates. <br /> &nbsp; &nbsp; &nbsp; Default: ./lib/atpay/button/templates</i></p>
 
 <p><strong>env:</strong> <br /> 
-<i> &nbsp; &nbsp; &nbsp; The environment you want to generate buttons for. Currently sandbox or production<br /> &nbsp; &nbsp; &nbsp; Default : production</i></p>
+<i> &nbsp; &nbsp; &nbsp; The environment you want to generate buttons for. Currently sandbox or production<br /> &nbsp; &nbsp; &nbsp; Default: production</i></p>
 
 <p><strong>user_data:</strong> <br /> 
 <i> &nbsp; &nbsp; &nbsp; Optional user data  to be passed in as a string for your use. </i></p>
@@ -90,7 +90,7 @@ The button generator requires a few flags up front:
 
 <p><strong>input<sup>*</sup>: </strong> <br /> 
 <i> &nbsp; &nbsp; &nbsp; Input File
-<br />Default: $stdin</i></p>
+<br />&nbsp; &nbsp; &nbsp;Default: $stdin</i></p>
 
 <sup>*</sup>Reads from STDIN a comma delimmited file with each line containing the
 email address you're sending the button to and the credit card token you've
@@ -125,8 +125,6 @@ will output the following to STDOUT:
 the button in the example above looks like this:
 
 ![Example Button](https://github.com/atpay/button-generator/blob/master/imgs/sample_button.png?raw=true)
-
-## Library Usage
 
 
 ## Templates
