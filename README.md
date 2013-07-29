@@ -127,14 +127,13 @@ the button in the example above looks like this:
 ## Library Usage
 
 First include the 'atpay-button-generator' gem.
-
-    require 'atpay-button-generator'
-    
+```ruby
+require 'atpay-button-generator'
+```    
     
 Collect and parse parameters
 
-<pre>
-<code>
+```ruby
 def parse
   @targets = []
 
@@ -143,18 +142,15 @@ def parse
     @targets &lt;&lt; [data[0], data[1]]
   end
 end
-</code>
-</pre>
+```
 
 Build buttons 
-<pre>
-<code>
+```ruby
 def build
   generator = AtPay::Button::Generator.new @params.dup
   @buttons = generator.build @targets
 end
-</code>
-</pre>
+```
 
 
 ## Templates
