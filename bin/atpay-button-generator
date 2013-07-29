@@ -16,11 +16,13 @@ opts = Trollop::options do
   version "atpay-button-generator v0.1"
   banner <<-USAGE
       To generate an Atpay Button, follow these steps:
-      Create a text file, e.g. data.txt:
+      Create a text file, e.g. data.txt, containing an email address and the associated credit card token separated by a comma. Enter multiple lines for multiple buttons:
 
       test1@example.com,TL1UwJFXVN7e4p6+0B5N8hy4qQyqeNxVllmC663MLcMupuAWXdHJ9g8PRAnlIh+AMZBgpaIrfWStZ5/3hYi6vCAV7q6+3M6LLqxk
       test2@example.com,XKCF2E9QZPwdOSwfTQJzZC7byLt3PH8Tr1KhmLkfRHwfNJD5XbDRMrxGYOiSnfrLEKNzm9+a4r++bpUG2hNrPyYLpNgph3BXAAfC
       test3@example.com,iQOxdBV4KrFuPFgyywxytfbsD/rURrzmlADmg1QFP2VHd/kTnkXNpnp2Utv4RS0Zz2YeOloilMhljsOcRVA2YwSu9knwF1h6tNjE
+
+      Then run the following from the console in the same location as the file you created:
 
       $ atpay-button-generator --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "" --public-key "" --partner-id 20 < data.txt
     USAGE
