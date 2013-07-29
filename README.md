@@ -85,9 +85,9 @@ The button generator requires a few flags up front:
 <p><strong>user_data:</strong> <br /> 
 <i> &nbsp; &nbsp; &nbsp; Optional user data  to be passed in as a string for your use. </i></p>
 
-<p><strong>input<sup>*</sup>: </strong> <br /> 
+<p><strong>input: </strong> <br /> 
 <i> &nbsp; &nbsp; &nbsp; Input File
-<br />&nbsp; &nbsp; &nbsp;Default: $stdin</i></p>
+<br />&nbsp; &nbsp; &nbsp;Default: $stdin<sup>*</sup></i></p>
 
 <sup>*</sup>Reads from STDIN a comma delimmited file with each line containing the
 email address you're sending the button to and the credit card token you've
