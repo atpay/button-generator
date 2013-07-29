@@ -32,16 +32,22 @@ require_relative '../lib/atpay_buttons.rb'
     opt :env, "The environment you want to generate buttons for. Currently sandbox or production", :default => 'production'
     opt :templates, "Location of button templates.", :type => :string, :default => File.dirname(__FILE__) + '/../lib/atpay/button/templates'
     opt :user_data, "Optional user data to be passed in for your use", :type => :string
+    opt :type, "Optional the default is payment", :type => :string
     opt :input, "Input File", :default => $stdin
 end
 
 Trollop::die :amount, "must not be negative" if @opts[:amount] < 0
 Trollop::die :input, "must exist" unless File.exist?(@opts[:input]) if @opts[:input]
 
+def symbolize_values
+  @opts[:env] = @opts[:env].to_sym
+  @opts[:type] = @opts[:type].to_sym if @opts[:type]
+end
+
 def parse
   @targets = []
 
-  @opts[:env] = @opts[:env].to_sym
+  symbolize_values
 
   while !@opts[:input].eof?
     data = @opts[:input].readline.strip.split(',')
