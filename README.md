@@ -49,38 +49,36 @@ The button generator requires a few flags up front:
 
 ### Parameters
 
-<strong>amount (required): </strong> 
-<p><i> &nbsp; &nbsp; &nbsp; The amount a user should be charged for transactions after clicking this button</i></p>
+<p><strong>amount (required): </strong> <br />
+<i> &nbsp; &nbsp; &nbsp; The amount a user should be charged for transactions after clicking this button</i></p>
  
-<strong>private-key (required):</strong>
-<p><i> &nbsp; &nbsp; &nbsp; The private key given to you by @Pay</i></p>
+<p><strong>private-key (required):</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; The private key given to you by @Pay</i></p>
 
-<strong>public-key (required):</strong>
-<p><i> &nbsp; &nbsp; &nbsp; @Pay's public key, given to you by @Pay</i></p>
+<p><strong>public-key (required):</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; @Pay's public key, given to you by @Pay</i></p>
 
-<strong>partner-id (required):</strong>
-<p><i> &nbsp; &nbsp; &nbsp; The partner ID given to you by @Pay</i></p>
+<p><strong>partner-id (required):</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; The partner ID given to you by @Pay</i></p>
 
-<strong>subject:</strong>
-<p><i> &nbsp; &nbsp; &nbsp; The subject of the mailto: email (the message that a user will be sending to @Pay's servers after clicking the button)</i></p>
+<p><strong>subject:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; The subject of the mailto: email <br/> &nbsp; &nbsp; &nbsp; (the message that a user will be sending to @Pay's servers after clicking the button)</i></p>
 
+<p><strong>image:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; The URL to a small thumbnail image to be used in the button. <br /> &nbsp; &nbsp; &nbsp; Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png</i></p>
 
-<strong>image:</strong>
-<p><i> &nbsp; &nbsp; &nbsp; The URL to a small thumbnail image to be used in the button. <br />Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png</i></p>
+<p><strong>color:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; The background color of the button. <br /> &nbsp; &nbsp; &nbsp;  Default: #6dbe45</i></p>
 
+<p><strong>title:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; The title for each button</i></p>
 
-<strong>color:</strong>
-<p><i> &nbsp; &nbsp; &nbsp; The background color of the button.  Default: #6dbe45</i></p>
-
-<strong>title:</strong>
-<p><i> &nbsp; &nbsp; &nbsp; The title for each button</i></p>
-
-<strong>wrap:</strong>
-<p><i> &nbsp; &nbsp; &nbsp; Will use wrapped (with a styled div container) version of template. <br /> &nbsp; &nbsp; &nbsp; Default: false</i></p>
+<p><strong>wrap:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; Will use wrapped (with a styled div container) version of template. <br /> &nbsp; &nbsp; &nbsp; Default: false</i></p>
 
 
-<strong>templates:</strong>
-<p><i> &nbsp; &nbsp; &nbsp; Location of button templates.  Default: ./lib/atpay/button/templates</i></p>
+<p><strong>templates:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; Location of button templates. <br /> &nbsp; &nbsp; &nbsp; Default: ./lib/atpay/button/templates</i></p>
 
 And then reads from STDIN a comma delimmited file with each line containing the
 email address you're sending the button to and the credit card token you've
