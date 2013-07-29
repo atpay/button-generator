@@ -76,11 +76,23 @@ The button generator requires a few flags up front:
 <p><strong>wrap:</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; Will use wrapped (with a styled div container) version of template. <br /> &nbsp; &nbsp; &nbsp; Default: false</i></p>
 
-
 <p><strong>templates:</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; Location of button templates. <br /> &nbsp; &nbsp; &nbsp; Default: ./lib/atpay/button/templates</i></p>
 
-And then reads from STDIN a comma delimmited file with each line containing the
+<p><strong>env:</strong> <br /> 
+<i> &nbsp; &nbsp; &nbsp; The environment you want to generate buttons for. Currently sandbox or production<br /> &nbsp; &nbsp; &nbsp; Default : production</i></p>
+
+<p><strong>user_data:</strong> <br /> 
+<i> &nbsp; &nbsp; &nbsp; Optional user data  to be passed in as a string for your use. </i></p>
+
+<p><strong>type:</strong> <br /> 
+<i> &nbsp; &nbsp; &nbsp; Default: payment</i></p>
+
+<p><strong>input<sup>*</sup>: </strong> <br /> 
+<i> &nbsp; &nbsp; &nbsp; Input File
+<br />Default: $stdin</i></p>
+
+<sup>*</sup>Reads from STDIN a comma delimmited file with each line containing the
 email address you're sending the button to and the credit card token you've
 received from @Pay for that button:
 
