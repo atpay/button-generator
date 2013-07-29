@@ -137,10 +137,10 @@ Collect and parse parameters
 <code>
 def parse
   @targets = []
-  
+
   while !@params[:input].eof?
     data = @params[:input].readline.strip.split(',')
-    @targets << [data[0], data[1]]
+    @targets &lt;&lt; [data[0], data[1]]
   end
 end
 </code>
