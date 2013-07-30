@@ -40,10 +40,11 @@ multiple partners and can generate buttons on behalf of merchants that use their
 system. 
 
 After installing the atpay-button-generator gem, you'll have
-`atpay-button-generator` script in your gem binpath. By running it directly
-you'll get help output:
+`atpay-button-generator` script in your gem binpath. Run it with
+the help flag to get information on how to use it: 
 
-    $ atpay-button-generator
+
+    $ atpay-button-generator --help
 
 The button generator requires a few flags up front:
 
