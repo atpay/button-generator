@@ -99,7 +99,7 @@ received from @Pay for that button:
 
 ### Example
 
-    $ atpay-button-generator --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "" --public-key "" --partner-id 20 < input.txt
+    $ atpay-button-generator --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "" --public-key "" --partner-id 20 --input input.txt
 
 Where input.txt contains
 
