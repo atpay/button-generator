@@ -140,7 +140,7 @@ def parse
 
   while !@params[:input].eof?
     data = @params[:input].readline.strip.split(',')
-    @targets &lt;&lt; [data[0], data[1]]
+    @targets << [data[0], data[1]]
   end
 end
 ```
