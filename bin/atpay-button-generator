@@ -49,23 +49,16 @@ def parse
   @targets = []
 
   symbolize_values
+  @generator = AtPay::Button::Generator.new @opts.dup
+
   while !@opts[:input].eof?
     data = @opts[:input].readline.strip.split(',')
-    @targets << [data[0], data[1]]
-  end
-end
 
-def build
-  generator = AtPay::Button::Generator.new @opts.dup
-  @buttons = generator.build @targets
-end
-
-def print
-  @buttons.each do |pair|
-    puts "#{pair[0]},#{pair[1].gsub("\n", '')}"
+    @generator.build([[data[0], data[1]]]).each do |pair|
+      pair[1] = pair[1].gsub(/\s+/, "")
+      puts pair.join(",")
+    end
   end
 end
 
 parse
-build
-print
