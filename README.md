@@ -1,16 +1,30 @@
 # @Pay Payment Button Generator
 
 The @Pay payment button generator creates @Pay two-click buttons that you can send
-to your mailing list to collect funds via email. This library wraps the @Pay
-email tokens generated with the [@Pay Client
-Library](https://github.com/atpay/atpay-client), but handles the complexity of
-email client compatibility for you. 
+to your mailing list to collect funds via email. 
+
+When using two-click buttons in emails, you want to make sure that they are compatible
+in as many environments (clients/browsers/devices) as possible. This can be a painstaking
+task because all environments render buttons differently. Buttons generated with this
+tool are cross-platform and cross-browser compatible. This means that the two-click
+experience can be enjoyed on over 93% of browser, platform, and device combinations.
+The generator uses domain targeting and outputs html from a specific template depending
+on the email parameter. These templates include two sets of buttons. A CSS rule set will
+determine which button will be displayed on the end users device and browser. For more
+information on cross compatibility, 
+visit https://www.atpay.com/cross-compatible-mailto-links-mobile-browsers.
 
 You can use this library directly from your Ruby-based application, or you can
 interface with it via the command line from most any language.
 
 The provided Liquid templates are customizable here, or can be used as
 a starting point for your own implementation.
+
+This library is a convenience wrapper around the [@Pay Client
+Library](https://github.com/atpay/atpay-client). You may use both together or
+each independently, though this library does internally depend on the client
+library.
+
 
 ## Installation
 
@@ -190,7 +204,6 @@ end
 
 ## Templates
 
-When using two-click buttons in emails, you want to make sure that they are compatible in as many environments (clients/browsers/devices) as possible. This can be a painstaking task because all environments render buttons differently. Buttons generated with this tool are cross-platform and cross-browser compatible. This means that the two-click experience can be enjoyed on over 93% of browser, platform, and device combinations. The generator uses domain targeting and outputs html from a specific template depending on the email parameter. These templates include two sets of buttons. A CSS rule set will determine which button will be displayed on the end users device and browser. For more information on cross compatibility, visit https://www.atpay.com/cross-compatible-mailto-links-mobile-browsers.
 
 The generator uses a set of four default templates located in "lib/atpay/button/templates/". The yahoo.liquid template will be used for yahoo emails. The default.liquid template is for all other email providers. There are also versions prefixed with "wrap_" that will be used if the wrap parameter is set to "true". These "wrapped" templates are simply versions with a styled div that hold the buttons. 
 
