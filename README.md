@@ -109,50 +109,83 @@ Where input.txt contains
     test3@example.com,iQOxdBV4KrFuPFgyywxytfbsD/rURrzmlADmg1QFP2VHd/kTnkXNpnp2Utv4RS0Zz2YeOloilMhljsOcRVA2YwSu9knwF1h6tNjE
 
 will output three buttons, one for each of the email addresses above, in HTML
-format, one per line. If you're sending out one offer per button, you'll simply
+format, one per line. If you're sending out one offer per email address, you'll simply
 include each line in the outgoing message to the recipient (one to
 test1@example.com, one to test2@example.com, and one to test3@example.com).
 
-will output the following to STDOUT:
- 
-    test1@example.com <button_html>
-    test2@example.com <button_html>
-    test3@example.com <button_html>
-
-
-the button in the example above looks like this:
+A button from the example above looks like this:
 
 ![Example Button](https://github.com/atpay/button-generator/blob/master/imgs/sample_button.png?raw=true)
 
 
 ## Library Usage
 
-First include the 'atpay-button-generator' gem.
-```ruby
-require 'atpay-button-generator'
-```    
-    
-Collect and parse parameters
+After following the installation instructions above, you'll have the @Pay button
+generator library loaded in your application. Let's create an array containing
+hashes with our users' email address and html code for a button to deliver to
+htem:
 
 ```ruby
-def parse
-  @targets = []
+  require 'rubygems'
+  require 'atpay-button-generator'
 
-  while !@params[:input].eof?
-    data = @params[:input].readline.strip.split(',')
-    @targets &lt;&lt; [data[0], data[1]]
+  button_maker = AtPay::Button::Generator.new({
+    public_key: ATPAY_PUBLIC,
+    private_key: ATPAY_PRIVATE,
+    partner_id: ATPAY_PARTNER,
+    environment: :sandbox,
+    amount: 20
+  })
+
+  output = []
+
+  User.active.each do |user|
+    output << {
+      email: user.email,
+      button_html: button_maker.generate(user.email, user.source)
+    }
   end
-end
+
+  puts output.inspect
 ```
 
-Build buttons 
+## ActionMailer Example
+
+Assume you have a model that represents an offer you'd like to send to a user:
+
 ```ruby
-def build
-  generator = AtPay::Button::Generator.new @params.dup
-  @buttons = generator.build @targets
-end
-```
+  class OfferMailer < ActionMailer::Base
+    default from: 'offers@example.com'
 
+    def offer_email(offer)
+      @button = generator.generate({
+        email: offer.recipient.email,
+        source: offer.recipient.card_token
+      })
+
+      mail({ 
+        to: offer.recipient.email,
+        subject: offer.name
+      })
+    end
+
+    private
+    def generator
+      AtPay::Button::Generator.new({
+        amount: offer.amount
+      }.update(atpay_config))
+    end
+
+    # NOTE: Just throw this in an initializer if you can
+    def atpay_config
+      {
+        public_key: ATPAY_PUBLIC,
+        private_key: ATPAY_PRIVATE,
+        partner_id: ATPAY_PARTNER,
+        environment: (Rails.env != "production") ? :sandbox : :production
+      }
+    end
+end
 
 ## Templates
 
