@@ -55,7 +55,7 @@ def parse
     data = @opts[:input].readline.strip.split(',')
 
     @generator.build([[data[0], data[1]]]).each do |pair|
-      pair[1] = pair[1].gsub(/\s+/, "")
+      pair[1] = pair[1].gsub(/\s+/, " ")
       puts pair.join(",")
     end
   end
