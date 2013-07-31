@@ -186,6 +186,7 @@ Assume you have a model that represents an offer you'd like to send to a user:
       }
     end
 end
+```
 
 ## Templates
 
