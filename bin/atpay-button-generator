@@ -34,7 +34,7 @@ require_relative '../lib/atpay_buttons.rb'
     opt :templates, "Location of button templates.", :type => :string, :default => File.dirname(__FILE__) + '/../lib/atpay/button/templates'
     opt :user_data, "Optional user data to be passed in for your use", :type => :string
     opt :type, "Optional the default is payment", :type => :string
-    opt :input, "Input File", :default => $stdin, :required => true
+    opt :input, "Input File", :default => $stdin
 end
 
 Trollop::die :amount, "must not be negative" if @opts[:amount] < 0
