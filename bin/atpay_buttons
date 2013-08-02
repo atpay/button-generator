@@ -3,6 +3,7 @@
 require 'trollop'
 require_relative '../lib/atpay_buttons.rb'
 
+
 @opts = Trollop::options do
   version "atpay-button-generator v0.1"
   banner <<-USAGE
@@ -15,13 +16,13 @@ require_relative '../lib/atpay_buttons.rb'
 
       Then run the following from the console in the same location as the file you created:
 
-      $ atpay-button-generator --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "plBs9X+Zvr65z6iCa0oLNdAEGYZ85Dzf74Qy1yPTris=" --public-key "06zK82iu9NUUMmDiZsEvoUH25tbIE6R3R+zPnDK8YGQ=" --partner-id 20 < data.txt
+      $ atpay-button-generator --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "plBs9X+Zvr65z6iCa0oLNdAEGYZ85Dzf74Qy1yPTris=" --public-key "06zK82iu9NUUMmDiZsEvoUH25tbIE6R3R+zPnDK8YGQ=" --partner-id 20 --input data.txt
     USAGE
 
-    opt :amount, "The amount a user should be charged for transactions after clicking the generated button", :default => 5.0
-    opt :private_key, "The private key given to you by @Pay", :type => :string
-    opt :public_key, "@Pay's public key, given to you by @Pay", :type => :string
-    opt :partner_id, "The partner ID given to you by @Pay", :type => :integer
+    opt :amount, "The amount a user should be charged for transactions after clicking the generated button", :default => 5.0, :required => true
+    opt :private_key, "The private key given to you by @Pay", :type => :string, :required => true
+    opt :public_key, "@Pay's public key, given to you by @Pay", :type => :string, :required => true
+    opt :partner_id, "The partner ID given to you by @Pay", :type => :integer, :required => true
     opt :subject, "The subject of the mailto: email (the message that a user will be sending to @Pay's servers after clicking the button", :type => :string
     opt :image_url, "The URL to a small thumbnail image to be used in the button. Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png", :type => :string, :default => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png"
     opt :color, "The background color of the button. Default: #6dbe45", :type => :string, :default => "#6dbe45"
@@ -46,24 +47,16 @@ def parse
   @targets = []
 
   symbolize_values
+  @generator = AtPay::Button::Generator.new @opts.dup
 
   while !@opts[:input].eof?
     data = @opts[:input].readline.strip.split(',')
-    @targets << [data[0], data[1]]
-  end
-end
 
-def build
-  generator = AtPay::Button::Generator.new @opts.dup
-  @buttons = generator.build @targets
-end
-
-def print
-  @buttons.each do |pair|
-    puts "#{pair[0]},#{pair[1].gsub("\n", '')}"
+    @generator.build([[data[0], data[1]]]).each do |pair|
+      pair[1] = pair[1].gsub(/\s+/, " ")
+      puts pair.join(",")
+    end
   end
 end
 
 parse
-build
-print
