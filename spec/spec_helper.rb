@@ -11,8 +11,7 @@ require 'mocha/setup'
 
 # See http://www.jetbrains.com/ruby/webhelp/minitest.html
 if ENV["RM_INFO"] || ENV["TEAMCITY_VERSION"]
-  require 'active_support'
   require 'minitest/reporters'
-  MiniTest::Reporters.use! MiniTest::Reporters::RubyMineReporter.new
+  MiniTest::Reporters.use!
 end
 
