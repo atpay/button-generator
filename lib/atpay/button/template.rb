@@ -21,6 +21,8 @@ module AtPay
       end
 
       def render(args={})
+        @options.update args
+
         template.render({
           'url'          => default_mailto,
           'outlook_url'  => outlook_mailto,
@@ -28,7 +30,7 @@ module AtPay
           'content'      => amount,
           'dollar'       => amount.match(/\$\d+(?=\.)/).to_s,
           'cents'        => amount.match(/(?<=\.)[^.]*/).to_s,
-        }.update(string_hash @options.update(args)))
+        }.update(string_hash @options))
       end
 
       private

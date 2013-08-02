@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'pry'
 require 'trollop'
 require_relative '../lib/atpay_buttons.rb'
 

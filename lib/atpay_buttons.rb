@@ -1,5 +1,5 @@
 require 'atpay_tokens'
 require 'bigdecimal'
 
-require File.dirname(__FILE__) + '/atpay/button/template'
-require File.dirname(__FILE__) + '/atpay/button/generator'
+require_relative 'atpay/button/template'
+require_relative 'atpay/button/generator'
