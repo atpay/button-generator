@@ -140,8 +140,7 @@ hashes with our users' email address and html code for a button to deliver to
 htem:
 
 ```ruby
-  require 'rubygems'
-  require 'atpay-button-generator'
+  require 'atpay_buttons'
 
   button_maker = AtPay::Button::Generator.new({
     public_key: ATPAY_PUBLIC,
