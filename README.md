@@ -31,7 +31,7 @@ library.
 If your application is based on Ruby and you use Bundler, add the following line
 to your application's Gemfile:
 
-    gem 'atpay-button-generator'
+    gem 'atpay_buttons'
 
 And then execute:
 
@@ -40,7 +40,7 @@ And then execute:
 If you'd like to use the command line interface, or are not using Bundler, you
 can install the gem on your system with:
 
-    $ gem install atpay-button-generator
+    $ gem install atpay_buttons
 
 ## Requirements
 
@@ -58,7 +58,7 @@ After installing the atpay-button-generator gem, you'll have
 the help flag to get information on how to use it: 
 
 
-    $ atpay-button-generator --help
+    $ atpay_buttons --help
 
 The button generator requires a few flags up front:
 
@@ -114,7 +114,7 @@ received from @Pay for that button:
 
 ### Example
 
-    $ atpay-button-generator --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "" --public-key "" --partner-id 20 --input input.txt
+    $ atpay_buttons --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "" --public-key "" --partner-id 20 --input input.txt
 
 Where input.txt contains
 
