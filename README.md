@@ -54,7 +54,7 @@ multiple partners and can generate buttons on behalf of merchants that use their
 system. 
 
 After installing the atpay-button-generator gem, you'll have
-`atpay-button-generator` script in your gem binpath. Run it with
+`atpay_buttons` script in your gem binpath. Run it with
 the help flag to get information on how to use it: 
 
 
@@ -76,8 +76,14 @@ The button generator requires a few flags up front:
 <p><strong>partner-id (required):</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; The partner ID given to you by @Pay</i></p>
 
+<p><strong><sup>**</sup>universal:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; This flag indicates that a universal payment button should be returned.</i></p>
+
 <p><strong>subject:</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; The subject of the mailto: email <br/> &nbsp; &nbsp; &nbsp; (the message that a user will be sending to @Pay's servers after clicking the button)</i></p>
+
+<p><strong>signup-url:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; The signup URL for a Universal Button offer.  This option should only be present if you use the universal flag.</i></p>
 
 <p><strong>image:</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; The URL to a small thumbnail image to be used in the button <br /> &nbsp; &nbsp; &nbsp; Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png</i></p>
@@ -106,6 +112,9 @@ The button generator requires a few flags up front:
 
 <sup>*</sup>Reads from STDIN a comma delimmited file with each line containing the
 email address you're sending the button to and the credit card token you've
+
+<sup>**</sup>With a universal button the program doesn't look for an input stream, as it only ever generates one button.
+
 received from @Pay for that button:
 
     test1@example.com,TL1UwJFXVN7e4p6+0B5N8hy4qQyqeNxVllmC663MLcMupuAWXdHJ9g8PRAnlIh+AMZBgpaIrfWStZ5/3hYi6vCAV7q6+3M6LLqxk
@@ -137,7 +146,7 @@ A button from the example above looks like this:
 After following the installation instructions above, you'll have the @Pay button
 generator library loaded in your application. Let's create an array containing
 hashes with our users' email address and html code for a button to deliver to
-htem:
+them:
 
 ```ruby
   require 'atpay_buttons'
@@ -155,11 +164,27 @@ htem:
   User.active.each do |user|
     output << {
       email: user.email,
-      button_html: button_maker.generate(user.email, user.source)
+      button_html: button_maker.generate email: user.email, source: user.source
     }
   end
 
   puts output.inspect
+```  
+
+Generating a Universal button is similar to the process above.  However as the same button will work for multiple buyers you only need to make the one call to generate.  The source should be the URL a customer should visit to register their card info with @Pay.  This can be any page that implements the @Pay Javascript SDK.
+
+```
+  require 'atpay_buttons'
+
+  button_maker = AtPay::Button::Generator.new({
+    public_key: ATPAY_PUBLIC,
+    private_key: ATPAY_PRIVATE,
+    partner_id: ATPAY_PATNER,
+    environment: :sandbox,
+    amount: 20
+  })
+
+  puts button_maker.generate email: 'none', type: :url, source: 'https://special.example.com/signup'
 ```
 
 ### ActionMailer Example
