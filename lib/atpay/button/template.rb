@@ -21,6 +21,8 @@ module AtPay
       end
 
       def render(args={})
+        @options.update args
+
         template.render({
           'url'          => default_mailto,
           'outlook_url'  => outlook_mailto,
@@ -28,12 +30,19 @@ module AtPay
           'content'      => amount,
           'dollar'       => amount.match(/\$\d+(?=\.)/).to_s,
           'cents'        => amount.match(/(?<=\.)[^.]*/).to_s,
-        }.update(@options.update(args)))
+        }.update(string_hash @options))
       end
 
       private
       def amount
         number_to_currency(@options[:amount])
+      end
+
+      def string_hash(hsh)
+        hsh.inject({}) do |result, key|
+          result[key[0].to_s] = key[1]
+          result
+        end
       end
 
       def provider
@@ -60,10 +69,15 @@ module AtPay
         "mailto:#{@options[:processor]}?subject=#{mailto_subject}&body=#{mailto_body}"
       end
 
+      # Load the mailto body template from the specified location
       def mailto_body_template
         Liquid::Template.parse(File.read(File.join(@options[:templates], "mailto_body.liquid")))
       end
   
+      # Parse the mailto body, this is where we inject the token, name and amount values we received in
+      # the options.
+      #
+      # @return [String]
       def mailto_body
         URI::encode(mailto_body_template.render({
           'amount' => amount,
@@ -78,6 +92,8 @@ module AtPay
         Liquid::Template.parse(template_content)
       end
 
+      # Determine which template to load based on the domain of the email address.
+      # This preserves the mailto behavior across email environments.
       def template_content
         wrap_prefix = @options[:wrap] ? "wrap_" : ""
 
