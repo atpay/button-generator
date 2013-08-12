@@ -24,7 +24,6 @@ describe AtPay::Button::Template do
     end
 
     it "renders wrapped version of yahoo template for yahoo providers" do
-		 puts "CWD is #{ENV['PWD']}"
       %w(test@yahoo.com test@ymail.com test@rocketmail.com).each do |email|
         subject.instance_eval { 
           @options[:email] = email 
