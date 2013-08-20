@@ -18,6 +18,8 @@ module AtPay
       end
 
       def render(args={})
+        @options.update args
+
         template.render({
           'url'          => default_mailto,
           'outlook_url'  => outlook_mailto,
@@ -25,12 +27,19 @@ module AtPay
           'content'      => amount,
           'dollar'       => amount.match(/\$\d+(?=\.)/).to_s,
           'cents'        => amount.match(/(?<=\.)[^.]*/).to_s,
-        }.update(@options.update(args)))
+        }.update(string_hash @options))
       end
 
       private
       def amount
         "$%.2f" % @options[:amount].to_f
+      end
+
+      def string_hash(hsh)
+        hsh.inject({}) do |result, key|
+          result[key[0].to_s] = key[1]
+          result
+        end
       end
 
       def provider

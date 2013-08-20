@@ -58,7 +58,8 @@ module AtPay
       end
 
       def to_html(token, email)
-        template(email).render(token: token, email: email)
+        @options.update({:token => token})
+        template(email).render(token: token, :email => email)
       end
 
       # Generate the actual button HTML.  There are three options available :source (the card token),

@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+require 'trollop'
+require_relative '../lib/atpay_buttons.rb'
+
+
+@opts = Trollop::options do
+  version "atpay_buttons v1.1"
+  banner <<-USAGE
+      To generate a Targeted @Pay Button, follow these steps:
+      Create a text file, e.g. data.txt, containing an email address and the associated credit card token separated by a comma. Enter multiple lines for multiple buttons:
+
+      test1@example.com,TL1UwJFXVN7e4p6+0B5N8hy4qQyqeNxVllmC663MLcMupuAWXdHJ9g8PRAnlIh+AMZBgpaIrfWStZ5/3hYi6vCAV7q6+3M6LLqxk
+      test2@example.com,XKCF2E9QZPwdOSwfTQJzZC7byLt3PH8Tr1KhmLkfRHwfNJD5XbDRMrxGYOiSnfrLEKNzm9+a4r++bpUG2hNrPyYLpNgph3BXAAfC
+      test3@example.com,iQOxdBV4KrFuPFgyywxytfbsD/rURrzmlADmg1QFP2VHd/kTnkXNpnp2Utv4RS0Zz2YeOloilMhljsOcRVA2YwSu9knwF1h6tNjE
+
+      Then run the following from the console in the same location as the file you created:
+
+      $ atpay_buttons --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "plBs9X+Zvr65z6iCa0oLNdAEGYZ85Dzf74Qy1yPTris=" --public-key "06zK82iu9NUUMmDiZsEvoUH25tbIE6R3R+zPnDK8YGQ=" --partner-id 20 --input data.txt
+
+
+
+      To generate a Universal @Pay Button, run the following command:
+
+      $ atpay_buttons --universal true --title "Pay" --amount 50.00 --subject "Payment for fifty bucks" --private-key "plBs9X+Zvr65z6iCa0oLNdAEGYZ85Dzf74Qy1yPTris=" --public-key "06zK82iu9NUUMmDiZsEvoUH25tbIE6R3R+zPnDK8YGQ=" --partner-id 20
+    USAGE
+
+    opt :amount, "The amount a user should be charged for transactions after clicking the generated button", :default => 5.0, :required => true
+    opt :private_key, "The private key given to you by @Pay", :type => :string, :required => true
+    opt :public_key, "@Pay's public key, given to you by @Pay", :type => :string, :required => true
+    opt :partner_id, "The partner ID given to you by @Pay", :type => :integer, :required => true
+    opt :universal, "This will build a non-targeted payment button", :type => :boolean, :default => false
+    opt :subject, "The subject of the mailto: email (the message that a user will be sending to @Pay's servers after clicking the button", :type => :string
+    opt :signup_url, "This is the signup url for recipients that don't have @Pay Records", :type => :string
+    opt :image_url, "The URL to a small thumbnail image to be used in the button. Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png", :type => :string, :default => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png"
+    opt :color, "The background color of the button. Default: #6dbe45", :type => :string, :default => "#6dbe45"
+    opt :title, "The title for each button", :type => :string
+    opt :wrap, "Will use wrapped (with a styled div container) version of the template. Default: false", :type => :boolean, :default => false
+    opt :env, "The environment you want to generate buttons for. Currently sandbox or production", :default => 'production'
+    opt :templates, "Location of button templates.", :type => :string, :default => File.dirname(__FILE__) + '/../lib/atpay/button/templates'
+    opt :user_data, "Optional user data to be passed in for your use", :type => :string
+    opt :type, "Optional the default is payment", :type => :string
+    opt :input, "Input File", :default => $stdin
+end
+
+Trollop::die :amount, "must not be negative" if @opts[:amount] < 0
+Trollop::die :input, "must exist" unless File.exist?(@opts[:input]) if @opts[:input]
+
+def symbolize_values
+  @opts[:env] = @opts[:env].to_sym
+  @opts[:type] = @opts[:type].to_sym if @opts[:type]
+end
+
+def parse
+  @targets = []
+
+  symbolize_values
+  @generator = AtPay::Button::Generator.new @opts.dup
+  
+  @opts[:universal] ? puts(universal_button) : targeted_buttons
+end
+
+def targeted_buttons
+  while !@opts[:input].eof?
+    data = @opts[:input].readline.strip.split(',')
+
+    @generator.build([[data[0], data[1]]]).each do |pair|
+      pair[1] = pair[1].gsub(/\s+/, " ")
+      puts pair.join(",")
+    end
+  end
+end
+
+def universal_button
+  @generator.generate source: @opts[:signup_url], type: :url, email: 'default@template.please' # Yep literal hardcoded junk.  This screams for a refactor of underlying behaviors.
+end
+
+parse
