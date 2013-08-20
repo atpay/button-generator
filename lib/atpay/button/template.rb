@@ -1,12 +1,9 @@
 require 'liquid'
-require 'active_support/number_helper'
 require 'uri'
 
 module AtPay
   module Button
     class Template
-      include ActiveSupport::NumberHelper
-
       # Requires destination and email in addition to this, which should just be strings...
       def initialize(options)
         @options = {
@@ -33,7 +30,7 @@ module AtPay
 
       private
       def amount
-        number_to_currency(@options[:amount])
+        "$%.2f" % @options[:amount].to_f
       end
 
       def provider
