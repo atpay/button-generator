@@ -33,9 +33,11 @@ require_relative '../lib/atpay_buttons.rb'
     opt :subject, "The subject of the mailto: email (the message that a user will be sending to @Pay's servers after clicking the button", :type => :string
     opt :signup_url, "This is the signup url for recipients that don't have @Pay Records", :type => :string
     opt :image_url, "The URL to a small thumbnail image to be used in the button. Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png", :type => :string, :default => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png"
-    opt :color, "The background color of the button. Default: #6dbe45", :type => :string, :default => "#6dbe45"
+    opt :background_color, "The background color of the button. Default: #6dbe45", :type => :string, :default => "#6dbe45"
+    opt :foreground_color, "The foreground color of the button. Default: #ffffff", :type => :string, :default => "#ffffff"
     opt :title, "The title for each button", :type => :string
     opt :wrap, "Will use wrapped (with a styled div container) version of the template. Default: false", :type => :boolean, :default => false
+    opt :wrap_text, "Text to use for the wrapper if wrap is true. Default: 'Made for Mobile'", :type => :string, :default => "Made for Mobile"
     opt :env, "The environment you want to generate buttons for. Currently sandbox or production", :default => 'production'
     opt :templates, "Location of button templates.", :type => :string, :default => File.dirname(__FILE__) + '/../lib/atpay/button/templates'
     opt :user_data, "Optional user data to be passed in for your use", :type => :string

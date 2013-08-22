@@ -88,14 +88,20 @@ The button generator requires a few flags up front:
 <p><strong>image:</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; The URL to a small thumbnail image to be used in the button <br /> &nbsp; &nbsp; &nbsp; Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png</i></p>
 
-<p><strong>color:</strong> <br />
+<p><strong>background-color:</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; The background color of the button <br /> &nbsp; &nbsp; &nbsp;  Default: #6dbe45</i></p>
+
+<p><strong>foreground-color:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; The foreground color of the button <br /> &nbsp; &nbsp; &nbsp;  Default: #ffffff</i></p>
 
 <p><strong>title:</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; The title for each button</i></p>
 
 <p><strong>wrap:</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; Will use wrapped (with a styled div container) version of template <br /> &nbsp; &nbsp; &nbsp; Default: false</i></p>
+
+<p><strong>wrap-text:</strong> <br />
+<i> &nbsp; &nbsp; &nbsp; Text to use within the wrapper <br /> &nbsp; &nbsp; &nbsp; Default: "Made for Mobile"</i></p>
 
 <p><strong>templates:</strong> <br />
 <i> &nbsp; &nbsp; &nbsp; Location of button templates <br /> &nbsp; &nbsp; &nbsp; Default: ./lib/atpay/button/templates</i></p>

@@ -8,7 +8,7 @@ describe AtPay::Button::Template do
 
   describe "#new" do
     it "adds the provided options to the defaults" do
-      subject.instance_eval{ @options }.keys.sort.must_equal [:subject, :title, :color, :image, :processor, :destination, :templates, :email, :amount, :wrap].sort
+      subject.instance_eval{ @options }.keys.sort.must_equal [:subject, :title, :background_color, :foreground_color, :image, :processor, :destination, :templates, :email, :amount, :wrap, :wrap_text].sort
     end
   end
 
