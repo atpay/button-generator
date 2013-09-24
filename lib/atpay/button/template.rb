@@ -9,11 +9,13 @@ module AtPay
         @options = {
           :subject => "Submit @Pay Payment",
           :title => "Pay",
-          :color => "#6dbe45",
+          :background_color => "#6dbe45",
+          :foreground_color => "#ffffff",
           :image => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png",
           :processor => "transaction@secure.atpay.com",
           :templates => File.join(File.dirname(__FILE__), "/templates"),
-          :wrap => false
+          :wrap => false,
+          :wrap_text => "Made for Mobile"
         }.update(options)
       end
 
