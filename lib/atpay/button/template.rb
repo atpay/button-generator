@@ -1,5 +1,5 @@
 require 'liquid'
-require 'uri'
+require 'cgi'
 
 module AtPay
   module Button
@@ -51,7 +51,7 @@ module AtPay
       end
 
       def mailto_subject
-        URI::encode(@options[:subject])
+        CGI.escape(@options[:subject])
       end
 
       def yahoo_mailto
@@ -76,7 +76,7 @@ module AtPay
       #
       # @return [String]
       def mailto_body
-        URI::encode(mailto_body_template.render({
+        CGI.escape(mailto_body_template.render({
           'amount' => amount,
           'name' => @options[:destination],
           'token' => @options[:token]
