@@ -9,6 +9,8 @@
   .ExternalClass a.outlook table.sub {width: auto !important; height: auto !important;}
   .ExtenralClass a.outlook td.title {font-size: 11px !important ; color: {{foreground_color}}; font-family: Tahoma; text-align:center; padding:0; margin:0;}
   .ExternalClass a.outlook table.subB{float:left; margin:0; margin-left:5px !important;}
+  .ExternalClass a.outlook table.subB td.doll {line-height: 25px !important;}
+
 </style>
 
 
@@ -73,10 +75,10 @@
     </table>
   </a>
   <a border='0' class='outlook' href='{{outlook_url}}' style='text-underline:none;  font-size:0px;  width:0px; height: 0px;'>
-    <table border='0' cellpadding='0' cellspacing='0' height='0' style='background-color:{{foreground_color}}; overflow: hidden;  font-size: 0px; ' width='0'>
+    <table border='0' cellpadding='0' cellspacing='0' height='0' style='overflow: hidden;  font-size: 0px; ' width='0'>
       <tr class='main'>
         <td class='main' style='padding: 0px;' width='0'>
-          <table border='0' cellpadding='0' cellspacing='0' class='sub' height='' style='background-color:{{foreground_color}}; overflow: hidden;' width=''>
+          <table border='0' cellpadding='0' cellspacing='0' class='sub' height='' style='overflow: hidden;' width=''>
             <tr>
               <td style='line-height:1px;'>
                 <a class='outlook' href='{{outlook_url}}' style='color:{{foreground_color}}; text-decoration:none; border:none;'>
@@ -94,7 +96,7 @@
                     <td>
                       <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
                         <tr>
-                          <td style='padding:0; margin:0; font-size: 0px; color: {{foreground_color}}; font-family: Tahoma; vertical-align:top; line-height:0px;' valign='top'>
+                          <td class="doll" style='padding:0; margin:0; font-size: 0px; color: {{foreground_color}}; font-family: Tahoma; vertical-align:top; line-height:0px;' valign='top'>
                             <a class='outlook' href='{{outlook_url}}' style='color:{{foreground_color}}; text-decoration:none; border:none;'>
                               {{dollar}}
                             </a>

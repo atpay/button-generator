@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "atpay_buttons"
-  spec.version       = '1.1.3'
+  spec.version       = '1.1.4'
   spec.date          = '2013-09-25'
   spec.authors       = ["Thomas Pastinsky", "Glen Holcomb", "James Kassemi", "Isaiah Baca"]
   spec.email         = ["dev@atpay.com"]
