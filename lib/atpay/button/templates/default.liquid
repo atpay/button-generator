@@ -1,102 +1,45 @@
 <style>
-  .ExternalClass a.outlook {display:inline; display: inline !important;font-size: 20px !important;}
-  .ExternalClass a.outlooksm {display:inline; display: inline !important;font-size: 12px !important;}
-  .ExternalClass a.not_outlook {display:none; display: none !important;}
-  .ExternalClass a.outlook table {background-color:{{background_color}} !important; font-size:10px !important; }
-  .ExternalClass a.outlook table td.main {width:145px !important; padding:3px 5px 5px 5px !important;}
-  .ExternalClass a.outlook table td img {width:auto !important; height: 39px !important; margin-left: 5px !important; margin-right:10px !important; margin-top:8px !important;}
-  .ExternalClass a.outlook table.sub {width: auto !important; height: auto !important;}
-  .ExtenralClass a.outlook td.title {font-size: 11px !important ; color: {{foreground_color}} font-family: Tahoma; text-align:center; padding:0; margin:0;}
-  .ExternalClass a.outlook table.subB{float:left; margin:0; margin-left:5px !important;}
-  .ExternalClass a.outlook table.subB td.doll {line-height: 25px !important;}
-
+  .ExternalClass table.reg_mailto {display:none; display: none !important;}
+  .ExternalClass table.out_mailto {display: table; display: table !important; font-size: 18px !important;}
+  .ExternalClass table.out_mailto  {font-family: Tahoma; color #ffffff;  background-color:{{background_color}}; padding:10px 15px 10px 10px !important;}
+  .ExternalClass table.out_mailto td.dollar{color: {{foreground_color}}; font-size:24px !important; width: auto !important; height: auto !important; text-align:right; padding-top: 3px !important; padding-left:10px !important;}
+  .ExternalClass table.out_mailto td.cents{font-size:12px !important; color: {{foreground_color}}; padding-top: 6px!important; width: auto !important; height: auto !important; text-align:left; text-decoration:underline; padding-left:3px;}
+  .ExternalClass table.out_mailto  td img {width:auto !important; height: 34px !important; margin-left: 5px !important; margin-right:10px !important; margin-top:8px !important;}
+  .ExternalClass table.out_mailto  td.cart{width:45px !important; padding-left:10px !important; height:39px !important; text-align:right}
+  .ExternalClass table.out_mailto a {display: inline-block !important; width: auto !important; text-decoration: none !important; color:{{foreground_color}} !important;}
 </style>
-<center>
 
-  <a border='0' class='not_outlook' href='{{url}}' style='text-underline:none;'>
-    <table border='0' cellpadding='0' cellspacing='0' style='background-color:{{background_color}};'>
-      <tr class='main'>
-        <td class='main' style='padding:3px 5px 5px 5px;' width='145'>
-          <table>
-            <tr>
-              <td>
-                <a class='not_outlook' href='{{url}}' style='color:{{foreground_color}}; text-decoration:none; border:none; display:inline;'>
-                  <img src='{{image}}' style='margin-left: 5px; margin-right:10px; margin-top:8px;'>
-                </a>
-              </td>
-              <td>
-                <table border='0' cellpadding='0' cellspacing='0' style='float:left; margin:0; margin-left:5px;'>
-                  <tr>
-                    <td style='font-size: 11px; color: {{foreground_color}}; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
-                      {{title}}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
-                        <tr>
-                          <td style='padding:0; margin:0; font-size: 20px; color: {{foreground_color}}; font-family: Tahoma; vertical-align:top; line-height:25px;' valign='top'>
-                            <a class='not_outlook' href='{{url}}' style='color:{{foreground_color}}; text-decoration:none; border:none; display:inline;'>
-                              {{dollar}}
-                            </a>
-                          </td>
-                          <td style='padding:0; margin:0; font-size:14px; text-decoration:underline;padding-left:2px; color: {{foreground_color}}; font-family: Tahoma; vertical-align:top;' valign='top'>
-                            <a class='not_outlook' href='{{url}}' style='color:{{foreground_color}}; text-decoration:none; border:none; display:inline;'>
-                              {{cents}}
-                            </a>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+<center>
+    <table class="reg_mailto" border='0' cellpadding='0' cellspacing='0' style='font-family: Tahoma;  background-color:{{background_color}}; padding:10px 15px 10px 0; width:150px;'>
+      <tr>
+        <td style='width:45px; padding-left:10px; height:39px; text-align:right;'>
+            <a class='reg_mailto' href='{{url}}' style='display: inline-block; width:auto;' target="_blank"> <img src='{{image}}'> </a>
+        </td>
+        <td style='padding-right:0px; color: {{foreground_color}};font-size:24px;  padding-top:3px; text-align:right;' valign='top'>
+          <a class='reg_mailto' href='{{url}}' style='display: inline-block; width:auto; text-decoration:none; color:{{foreground_color}};' target="_blank"> {{dollar}}</a>
+        </td>
+        <td class='cents' style='color:{{foreground_color}};font-size:12px; padding-left:3px; padding-top:6px; text-align:left; text-decoration:underline;' valign='top'>
+            <a class='reg_mailto' href='{{url}}' style='display: inline-block; width:auto; text-decoration:none; color:{{foreground_color}};' target="_blank"> {{cents}} </a>
         </td>
       </tr>
     </table>
-  </a>
-  <a border='0' class='outlook' href='{{outlook_url}}' style='text-underline:none;  font-size:0px;  width:0px; height: 0px;'>
-    <table border='0' cellpadding='0' cellspacing='0' height='0' style='overflow: hidden;  font-size: 0px; ' width='0'>
-      <tr class='main'>
-        <td class='main' style='padding: 0px;' width='0'>
-          <table border='0' cellpadding='0' cellspacing='0' class='sub' height='' style='overflow: hidden;' width=''>
-            <tr>
-              <td style='line-height:1px;'>
-                <a class='outlook' href='{{outlook_url}}' style='color:{{foreground_color}}; text-decoration:none; border:none;'>
-                  <img height='1' src='{{image}}' style='text-indent:-9999px; margin: 0px; width:1px; height:1px' width='1'>
-                </a>
-              </td>
-              <td>
-                <table border='0' cellpadding='0' cellspacing='0' class='subB' style='float:left; margin:0; margin-left:0px;'>
-                  <tr>
-                    <td class='title' style='font-size: 0px; color: {{foreground_color}}; font-family: Tahoma; text-align:center; padding:0; margin:0;'>
-                      {{title}}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <table border='0' cellpadding='0' cellspacing='0' style='margin:0; padding:0;'>
-                        <tr>
-                          <td class="doll" style='padding:0; margin:0; font-size: 0px; color: {{foreground_color}}; font-family: Tahoma; vertical-align:top; line-height:0px;' valign='top'>
-                            <a class='outlook' href='{{outlook_url}}' style='color:{{foreground_color}}; text-decoration:none; border:none;'>
-                              {{dollar}}
-                            </a>
-                          </td>
-                          <td style='padding:0; margin:0; font-size:0px; text-decoration:underline;padding-left:0px; color: {{foreground_color}}; font-family: Tahoma; vertical-align:top;' valign='top'>
-                            <a class='outlooksm' href='{{outlook_url}}' style='color:{{foreground_color}}; text-decoration:none; border:none;'>
-                              {{cents}}
-                            </a>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+
+    <table class='out_mailto'  border='0' cellpadding='0' cellspacing='0' style='width:0; height:0; padding:0; margin:0; font-size:0;'>
+      <tr>
+        <td class='cart'>
+            <a href='{{outlook_url}}' style='display:none;'  target="_blank">
+            <img src='{{image}}' style='margin: 0px; width:0px; height:0px'>
+            </a>
+        </td>
+        <td class='dollar' style='width:0; height:0; padding:0; margin:0; font-size:0;' valign='top'>
+          <a href='{{outlook_url}}' style='display:none;'  target="_blank">
+            {{dollar}}
+          </a>
+        </td>
+        <td class='cents' style='width:0; height:0; padding:0; margin:0; font-size:0;' valign='top'>
+        <a href='{{outlook_url}}' style='display:none;' target="_blank">
+          {{cents}}
+        </a>
         </td>
       </tr>
     </table>
