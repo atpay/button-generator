@@ -17,6 +17,8 @@ module AtPay
           :wrap => false,
           :wrap_text => "Made for Mobile"
         }.update(options)
+
+        @options[:token] = CGI.escape(@options[:token])
       end
 
       def render(args={})
@@ -53,7 +55,7 @@ module AtPay
       end
 
       def mailto_subject
-        CGI.escape(@options[:subject])
+        URI.encode(@options[:subject])
       end
 
       def yahoo_mailto
@@ -78,11 +80,11 @@ module AtPay
       #
       # @return [String]
       def mailto_body
-        CGI.escape(mailto_body_template.render({
+        mailto_body_template.render({
           'amount' => amount,
           'name' => @options[:destination],
           'token' => @options[:token]
-        }))
+        })
       end
 
       # This is processed as liquid - in the future we can allow overwriting the
