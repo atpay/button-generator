@@ -17,8 +17,6 @@ module AtPay
           :wrap => false,
           :wrap_text => "Made for Mobile"
         }.update(options)
-
-        @options[:token] = CGI.escape(@options[:token])
       end
 
       def render(args={})
@@ -83,7 +81,7 @@ module AtPay
         mailto_body_template.render({
           'amount' => amount,
           'name' => @options[:destination],
-          'token' => @options[:token]
+          'token' => CGI.escape(@options[:token])
         })
       end
 
