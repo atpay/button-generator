@@ -2,13 +2,14 @@ require 'spec_helper'
 
 describe AtPay::Button::Template do
   let(:session) { mock }
-  let(:options) { {destination: "Partner Name", email: 'bob@example.com', amount: 20, templates: "spec/fixtures/templates" } }
+  let(:token) { '@QQTFJz2wM5fcVD/PLmpnjNvJIKe8MoGOAAAAAAAAD63aKFKQqrkwigfNSdPP2kVGqHiDr7t2yCLyqcuDTUrBvGBcgbzFnyNui7PYSzHRJM0tP3TS7DlURUuhVq5p3gQvX0Ycd2ISHGP9POWz3B2u+sTVtRy89aM=' }
+  let(:options) { {destination: "Partner Name", email: 'bob@example.com', amount: 20, templates: "spec/fixtures/templates", token: token } }
   let(:subject) { AtPay::Button::Template.new options }
   let(:subject_class) { AtPay::Button::Template }
 
   describe "#new" do
     it "adds the provided options to the defaults" do
-      subject.instance_eval{ @options }.keys.sort.must_equal [:subject, :title, :background_color, :foreground_color, :image, :processor, :destination, :templates, :email, :amount, :wrap, :wrap_text].sort
+      subject.instance_eval{ @options }.keys.sort.must_equal [:subject, :token, :title, :background_color, :foreground_color, :image, :processor, :destination, :templates, :email, :amount, :wrap, :wrap_text].sort
     end
   end
 
@@ -54,7 +55,7 @@ describe AtPay::Button::Template do
 
   # Integration style tests
   describe "#templates" do
-    let(:options) { {destination: "Partner Name", amount: 20 } }
+    let(:options) { {destination: "Partner Name", amount: 20, token: token } }
     
     it "should render with all known template types" do
       %w(test@hotmail.com test@yahoo.com test@atpay.com).each do |email|
