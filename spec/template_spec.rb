@@ -7,6 +7,12 @@ describe AtPay::Button::Template do
   let(:subject) { AtPay::Button::Template.new options }
   let(:subject_class) { AtPay::Button::Template }
 
+=begin
+  it "test" do
+    binding.pry
+  end
+=end
+
   describe "#new" do
     it "adds the provided options to the defaults" do
       subject.instance_eval{ @options }.keys.sort.must_equal [:subject, :token, :title, :background_color, :foreground_color, :image, :processor, :destination, :templates, :email, :amount, :wrap, :wrap_text].sort

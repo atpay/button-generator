@@ -52,6 +52,10 @@ module AtPay
         end 
       end
 
+      def token
+        @options[:token].chars.each_slice(50).map(&:join).join("\n")
+      end
+
       def mailto_subject
         URI.encode(@options[:subject])
       end
@@ -78,11 +82,11 @@ module AtPay
       #
       # @return [String]
       def mailto_body
-        mailto_body_template.render({
+        CGI.escape(mailto_body_template.render({
           'amount' => amount,
           'name' => @options[:destination],
-          'token' => CGI.escape(@options[:token])
-        })
+          'token' => token
+        }))
       end
 
       # This is processed as liquid - in the future we can allow overwriting the
