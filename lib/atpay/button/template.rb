@@ -82,11 +82,12 @@ module AtPay
       #
       # @return [String]
       def mailto_body
-        CGI.escape(mailto_body_template.render({
+        part_a = URI.encode(mailto_body_template.render({
           'amount' => amount,
-          'name' => @options[:destination],
-          'token' => token
-        }))
+          'name' => @options[:destination]}))
+        part_b = CGI.escape(token)
+        part_z = "#{part_a}%0A%0A#{part_b}"
+        return part_z
       end
 
       # This is processed as liquid - in the future we can allow overwriting the
