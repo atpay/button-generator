@@ -82,7 +82,7 @@ module AtPay
       #
       # @return [String]
       def mailto_body
-        CGI.escape(mailto_body_template.render({
+        URI.escape(mailto_body_template.render({
           'amount' => amount,
           'name' => @options[:destination],
           'token' => token
