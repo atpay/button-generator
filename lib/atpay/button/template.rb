@@ -17,6 +17,8 @@ module AtPay
           :wrap => false,
           :wrap_text => "Made for Mobile"
         }.update(options)
+
+        @options[:image] = nil if @options[:image] == ''
       end
 
       def render(args={})
