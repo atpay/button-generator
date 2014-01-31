@@ -12,9 +12,11 @@
 <center>
     <table class="reg_mailto" border='0' cellpadding='0' cellspacing='0' style='font-family: Tahoma;  background-color:{{background_color}}; padding:10px 15px 10px 0; width:150px;'>
       <tr>
-        <td style='width:45px; padding-left:10px; height:39px; text-align:right;'>
-            <a class='reg_mailto' href='{{url}}' style='display: inline-block; width:auto;' target="_blank"> <img src='{{image}}'> </a>
-        </td>
+        {% if image %}
+          <td style='width:45px; padding-left:10px; height:39px; text-align:right;'>
+              <a class='reg_mailto' href='{{url}}' style='display: inline-block; width:auto;' target="_blank"> <img src='{{image}}'> </a>
+          </td>
+        {% endif %}
         <td style='padding-right:0px; color: {{foreground_color}};font-size:24px;  padding-top:3px; text-align:right;' valign='top'>
           <a class='reg_mailto' href='{{url}}' style='display: inline-block; width:auto; text-decoration:none; color:{{foreground_color}};' target="_blank"> {{dollar}}</a>
         </td>
