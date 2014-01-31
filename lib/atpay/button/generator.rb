@@ -53,11 +53,11 @@ module AtPay
       # @param email [String] the email address the button is intended for.
       #
       # @return [AtPay::Button::Template]
-      def template(email)
+      def template(email = nil)
         Template.new(@options.update(:email => email, :amount => amount))
       end
 
-      def to_html(token, email)
+      def to_html(token, email = nil)
         @options.update({:token => token})
         template(email).render(token: token, :email => email)
       end

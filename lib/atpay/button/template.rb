@@ -47,6 +47,8 @@ module AtPay
       end
 
       def provider
+        return :default if @options[:email].nil?
+        
         if ["yahoo.com", "ymail.com", "rocketmail.com"].any? { |c| @options[:email].include? c }
           :yahoo
         else
