@@ -7,6 +7,7 @@ gem 'liquid'
 gem 'atpay_tokens'
 gem 'activesupport', '4.0.0'
 gem 'trollop'
+gem 'rake'
 
 # Test-specific gems
 group :test do
