@@ -30,7 +30,7 @@ module AtPay
           'yahoo_url'    => yahoo_mailto,
           'content'      => amount,
           'dollar'       => amount.match(/\$\d+(?=\.)/).to_s,
-          'cents'        => amount.match(/(?<=\.)[^.]*/).to_s,
+          'cents'        => ".#{amount.match(/(?<=\.)[^.]*/).to_s}",
         }.update(string_hash @options))
       end
 
