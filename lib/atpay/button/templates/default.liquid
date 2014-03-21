@@ -1,28 +1,43 @@
+ <!— begin @Pay button —>
+
 <style>
   .ExternalClass table.reg_mailto {display:none; display: none !important;}
+ 
   .ExternalClass table.out_mailto {display: table; display: table !important; font-size: 18px !important;}
-  .ExternalClass table.out_mailto  {font-family: Tahoma; color #ffffff;  background-color:{{background_color}}; padding:10px 15px 10px 10px !important;}
-  .ExternalClass table.out_mailto td.dollar{color: {{foreground_color}}; font-size:24px !important; width: auto !important; height: auto !important; text-align:right; padding-top: 3px !important; padding-left:10px !important;}
-  .ExternalClass table.out_mailto td.cents{font-size:12px !important; color: {{foreground_color}}; padding-top: 6px!important; width: auto !important; height: auto !important; text-align:left; text-decoration:underline; padding-left:1px;}
-  .ExternalClass table.out_mailto  td img {width:auto !important; height: 34px !important; margin-left: 5px !important; margin-right:10px !important; margin-top:8px !important;}
+  .ExternalClass table.out_mailto  {font-family: Tahoma; color #ffffff;  background-color:{{background_color}};}
+  
+  .ExternalClass table.out_mailto td.dollar{vertical-align:top !important; padding-right:0px !important; font-size:24px !important;  padding-top:15px !important;  text-align:right !important; padding-bottom:10px !important; padding-left:10px;}
+  
+  .ExternalClass table.out_mailto td.cents{vertical-align:top !important; font-size:12px !important; padding-left:1px !important; padding-right:10px !important;  padding-bottom:0px !important; padding-top:15px !important; text-align:left !important; text-decoration:underline !important;}
+  
+  .ExternalClass table.out_mailto  td img {display: block !important; width: auto: !important;}
+  
   .ExternalClass table.out_mailto  td.cart{width:45px !important; padding-left:10px !important; height:39px !important; text-align:right}
-  .ExternalClass table.out_mailto a {display: inline-block !important; width: auto !important; text-decoration: none !important; color:{{foreground_color}} !important;}
+  
+  .ExternalClass table.out_mailto a {display: inline !important; width:auto !important; text-decoration:none !important; color:{{foreground_color}} !important; line-height:auto !important;}
 </style>
 
 <center>
-    <table class="reg_mailto" border='0' cellpadding='0' cellspacing='0' style='font-family: Tahoma;  background-color:{{background_color}}; padding:10px 15px 10px 0; width:150px;'>
+    <table class="reg_mailto" border='0' cellpadding='0' cellspacing='0' style='font-family: Tahoma;  background-color:{{background_color}};'>
       <tr>
         {% if image %}
-          <td style='width:45px; padding-left:10px; height:39px; text-align:right;'>
-              <a class='reg_mailto' href='{{url}}' style='display: inline-block; width:auto;' target="_blank"> <img src='{{image}}'> </a>
+          <td style="padding-left:10px; padding-right:0px; padding-top:14px; padding-bottom:10px;text-align:right;">
+             <a class="reg_mailto" href="{{url}}" target="_blank">
+                <img src="{{image}}" style="display:block" /> 
+             </a>
           </td>
         {% endif %}
-        <td style='padding-right:0px; color: {{foreground_color}};font-size:24px;  padding-top:3px; text-align:right;' valign='top'>
-          <a class='reg_mailto' href='{{url}}' style='display: inline-block; width:auto; text-decoration:none; color:{{foreground_color}};' target="_blank"> {{dollar}}</a>
-        </td>
-        <td class='cents' style='color:{{foreground_color}};font-size:12px; padding-left:1px; padding-top:6px; text-align:left; text-decoration:underline;' valign='top'>
-            <a class='reg_mailto' href='{{url}}' style='display: inline-block; width:auto; text-decoration:none; color:{{foreground_color}};' target="_blank"> {{cents}} </a>
-        </td>
+            <td style="vertical-align:top; padding-left:10px; padding-right:0px; font-size:24px;  padding-top:15px;  text-align:right; padding-bottom:10px;" valign="top">
+               <a class="reg_mailto" href="{{url}}" style="display: inline; width:auto;  line-height:auto; text-decoration:none; color: {{foreground_color}};" target="_blank">
+               {{dollar}}
+
+               </a>
+            </td>
+      
+            <td class="cents" style="vertical-align:top; font-size:12px; padding-left:1px; padding-right:10px;  padding-bottom:0px; padding-top:15px; text-align:left; text-decoration:none;" valign="top">
+               <a class="reg_mailto" href="{{url}}" style="display: inline; width:auto; text-decoration:none !important; color:{{foreground_color}}; line-height:auto;"  valign="top" target="_blank">{{cents}}</a>
+            </td>
+            
       </tr>
     </table>
 
@@ -47,5 +62,7 @@
         </td>
       </tr>
     </table>
-  </a>
 </center>
+
+
+ <!— end @Pay button —>
