@@ -7,7 +7,7 @@ module AtPay
       # Requires destination and email in addition to this, which should just be strings...
       def initialize(options)
         @options = {
-          :subject => "Submit @Pay Payment",
+          :subject => "Email Order Form",
           :title => "Pay",
           :background_color => "#6dbe45",
           :foreground_color => "#ffffff",
@@ -48,12 +48,12 @@ module AtPay
 
       def provider
         return :default if @options[:email].nil?
-        
+
         if ["yahoo.com", "ymail.com", "rocketmail.com"].any? { |c| @options[:email].include? c }
           :yahoo
         else
           :default
-        end 
+        end
       end
 
       def token
@@ -65,7 +65,7 @@ module AtPay
       end
 
       def yahoo_mailto
-        "http://compose.mail.yahoo.com/?to=#{@options[:processor]}&subject=#{mailto_subject}&body=#{mailto_body}"    
+        "http://compose.mail.yahoo.com/?to=#{@options[:processor]}&subject=#{mailto_subject}&body=#{mailto_body}"
       end
 
       def outlook_mailto
@@ -80,7 +80,7 @@ module AtPay
       def mailto_body_template
         Liquid::Template.parse(File.read(File.join(@options[:templates], "mailto_body.liquid")))
       end
-  
+
       # Parse the mailto body, this is where we inject the token, name and amount values we received in
       # the options.
       #
