@@ -1,22 +1,21 @@
 <!— begin @Pay button —>
 <!-- regular template with wrap -->
-<style>
-  .ExternalClass table.reg_mailto {display:none; display: none !important;}
+
+<style type="text/css">.ExternalClass table.reg_mailto {display:none; display: none !important;}
 
   .ExternalClass table.out_mailto {display: table; display: table !important; font-size: 18px !important;}
-  .ExternalClass table.out_mailto  {font-family: Tahoma; color #ffffff;  background-color:{{background_color}};}
+  .ExternalClass table.out_mailto  {font-family: Tahoma; color: #ffffff;  background-color: {{background_color}};}
 
   .ExternalClass table.out_mailto td.dollar{vertical-align:top !important; padding-right:0px !important; font-size:24px !important;  padding-top:15px !important;  text-align:right !important; padding-bottom:10px !important; padding-left:10px;}
 
   .ExternalClass table.out_mailto td.cents{vertical-align:top !important; font-size:12px !important; padding-left:1px !important; padding-right:10px !important;  padding-bottom:0px !important; padding-top:15px !important; text-align:left !important; text-decoration:underline !important;}
 
-  .ExternalClass table.out_mailto  td img {display: block !important; height: auto !important; width: auto: !important;}
+  .ExternalClass table.out_mailto  td img {display: block !important; height:auto !important; width: auto !important;}
 
   .ExternalClass table.out_mailto  td.cart{width:45px !important; padding-left:10px !important; height:39px !important; text-align:right}
 
   .ExternalClass table.out_mailto a {display: inline !important; border: 0 !important; width:auto !important; text-decoration:none !important; color:{{foreground_color}} !important; line-height:auto !important;}
 </style>
-
 
 <center>
   <table cellpadding='0' cellspacing='0' style='margin-bottom:20px;'>
@@ -40,7 +39,7 @@
         {% if image %}
           <td style="padding-left:10px; padding-right:0px; padding-top:14px; padding-bottom:10px;text-align:right;">
              <a class="reg_mailto" href="{{url}}" target="_blank" style="border: 0 !important;">
-                <img src="{{image}}" style="display:block" />
+                <img src="{{image}}" style="display:block;  border: 0 !important" />
              </a>
           </td>
         {% endif %}
@@ -63,7 +62,7 @@
         {% if image %}
           <td class='cart'>
               <a href='{{outlook_url}}' style='display:none; border: 0 !important;'  target="_blank">
-              <img src='{{image}}' style='margin: 0px; width:0px; height:0px'>
+              <img src='{{image}}' style='margin: 0px; width:0px; height:0px;  border: 0 !important;>
               </a>
           </td>
         {% endif %}
