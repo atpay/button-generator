@@ -4,7 +4,7 @@
   .ExternalClass table.reg_mailto {display:none; display: none !important;}
 
   .ExternalClass table.out_mailto {display: table; display: table !important; font-size: 18px !important;}
-  .ExternalClass table.out_mailto  {font-family: Tahoma; color #ffffff;  background-color:{{background_color}};}
+  .ExternalClass table.out_mailto  {font-family: Tahoma; color: #ffffff;  background-color:{{background_color}};}
 
   .ExternalClass table.out_mailto td.dollar{vertical-align:top !important; padding-right:0px !important; font-size:24px !important;  padding-top:15px !important;  text-align:right !important; padding-bottom:10px !important; padding-left:10px;}
 
@@ -18,12 +18,12 @@
 </style>
 
 <center>
-    <table class="reg_mailto" border='0' cellpadding='0' cellspacing='0' style='font-family: Tahoma;  background-color:{{background_color}};'>
+    <table class="reg_mailto" border='0' cellpadding='0' cellspacing='0' style='font-family: Tahoma; margin: 0 auto !important;  background-color:{{background_color}};'>
       <tr>
         {% if image %}
           <td style="padding-left:10px; padding-right:0px; padding-top:14px; padding-bottom:10px;text-align:right;">
-             <a class="reg_mailto" href="{{url}}" target="_blank" style="border: 0 !important;">
-                <img src="{{image}}" style="display:block; border: 0 !important;" />
+             <a class="reg_mailto" href="{{url}}" target="_blank" style="border: 0px !important;">
+                <img src="{{image}}" style="display:block; border: 0px !important;" />
              </a>
           </td>
         {% endif %}
@@ -45,8 +45,8 @@
       <tr>
         {% if image %}
           <td class='cart'>
-              <a href='{{outlook_url}}' style='display:none; border: 0 !important;'  target="_blank">
-              <img src='{{image}}' style='margin: 0px; width:0px; height:0px;  border: 0 !important'>
+              <a href='{{outlook_url}}' style='display:none; border: 0px !important;'  target="_blank">
+              <img src='{{image}}' style='margin: 0px; width:0px; height:0px;  border: 0px !important'>
               </a>
           </td>
         {% endif %}

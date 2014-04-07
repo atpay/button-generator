@@ -18,7 +18,7 @@
 </style>
 
 <center>
-  <table cellpadding='0' cellspacing='0' style='margin-bottom:20px;'>
+  <table cellpadding='0' cellspacing='0' style='margin: 0px auto 20px !important;'>
     <tr>
       <td>
         <table style='border-collapse:separate !important; width:200px;margin: auto; margin-bottom:5px; font-family: Lato; padding-bottom:10px; position:relative; padding-left:5px; padding-right:10px; margin-bottom:0px; margin-top:5px; padding:10px;padding-top:0; border-left: 1px solid #e4e2e2; border-top: 1px solid #e4e2e2; border-right: 1px solid #e4e2e2; '>
@@ -34,24 +34,24 @@
 <!-- BUTTON CODE -->
 
 <center>
-    <table class="reg_mailto" border='0' cellpadding='0' cellspacing='0' style='font-family: Tahoma;  background-color:{{background_color}};'>
+    <table class="reg_mailto" border='0' cellpadding='0' cellspacing='0' style='margin:0 auto !important; font-family: Tahoma;  background-color:{{background_color}};'>
       <tr>
         {% if image %}
           <td style="padding-left:10px; padding-right:0px; padding-top:14px; padding-bottom:10px;text-align:right;">
-             <a class="reg_mailto" href="{{url}}" target="_blank" style="border: 0 !important;">
-                <img src="{{image}}" style="display:block;  border: 0 !important" />
+             <a class="reg_mailto" href="{{url}}" target="_blank" style="border: 0px !important;">
+                <img src="{{image}}" style="display:block; border: 0px !important;" />
              </a>
           </td>
         {% endif %}
             <td style="vertical-align:top; padding-left:10px; padding-right:0px; font-size:24px;  padding-top:15px;  text-align:right; padding-bottom:10px;" valign="top">
-               <a class="reg_mailto" href="{{url}}" style="display: inline; width:auto;  border: 0 !important; line-height:auto; text-decoration:none; color: {{foreground_color}};" target="_blank">
+               <a class="reg_mailto" href="{{url}}" style="display: inline; width:auto;  border: 0px !important; line-height:auto; text-decoration: none; color: {{foreground_color}};" target="_blank">
                {{dollar}}
 
                </a>
             </td>
 
             <td class="cents" style="vertical-align:top; font-size:12px; padding-left:1px; padding-right:10px;  padding-bottom:0px; padding-top:15px; text-align:left; text-decoration:none;" valign="top">
-               <a class="reg_mailto" href="{{url}}" style="display: inline; border: 0 !important; width:auto; text-decoration:none; color:{{foreground_color}}; line-height:auto;"  valign="top" target="_blank">{{cents}}</a>
+               <a class="reg_mailto" href="{{url}}" style="display: inline; border: 0px !important; width:auto; text-decoration:none; color:{{foreground_color}}; line-height:auto;"  valign="top" target="_blank">{{cents}}</a>
             </td>
 
       </tr>
@@ -61,8 +61,8 @@
       <tr>
         {% if image %}
           <td class='cart'>
-              <a href='{{outlook_url}}' style='display:none; border: 0 !important;'  target="_blank">
-              <img src='{{image}}' style='margin: 0px; width:0px; height:0px;  border: 0 !important;>
+              <a href='{{outlook_url}}' style='display:none; border: 0px !important;'  target="_blank">
+              <img src='{{image}}' style='margin: 0px; width:0px; height:0px;  border: 0px !important;>
               </a>
           </td>
         {% endif %}
