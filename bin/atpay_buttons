@@ -34,6 +34,7 @@ require_relative '../lib/atpay_buttons.rb'
     opt :signup_url, "This is the signup url for recipients that don't have @Pay Records", :type => :string
     opt :image_url, "The URL to a small thumbnail image to be used in the button. Default: https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png", :type => :string, :default => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png"
     opt :background_color, "The background color of the button. Default: #6dbe45", :type => :string, :default => "#6dbe45"
+    opt :analytic_url, "The URL for an image to track opens. Default: none", :type => :string, :default => nil
     opt :foreground_color, "The foreground color of the button. Default: #ffffff", :type => :string, :default => "#ffffff"
     opt :title, "The title for each button", :type => :string
     opt :wrap, "Will use wrapped (with a styled div container) version of the template. Default: false", :type => :boolean, :default => false

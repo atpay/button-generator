@@ -1,5 +1,6 @@
 require 'liquid'
 require 'cgi'
+require 'uri'
 
 module AtPay
   module Button
@@ -14,6 +15,7 @@ module AtPay
           :image => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png",
           :processor => ENV["ATPAY_PAYMENT_ADDRESS"] || "transaction@secure.atpay.com",
           :templates => File.join(File.dirname(__FILE__), "/templates"),
+          :analytic_url => nil,
           :wrap => false,
           :wrap_text => "Made for Mobile"
         }.update(options)
