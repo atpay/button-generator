@@ -13,7 +13,7 @@ module AtPay
           :background_color => "#6dbe45",
           :foreground_color => "#ffffff",
           :image => "https://www.atpay.com/wp-content/themes/atpay/images/bttn_cart.png",
-          :processor => ENV["ATPAY_PAYMENT_ADDRESS"] || "transaction@secure.atpay.com",
+          :processor => ENV["ATPAY_PAYMENT_ADDRESS"] || "payment@transaction-l4.atpay.com",
           :templates => File.join(File.dirname(__FILE__), "/templates"),
           :analytic_url => nil,
           :wrap => false,
